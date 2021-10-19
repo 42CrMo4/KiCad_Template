@@ -114,9 +114,9 @@ jobs:
     - name: Run Schematic and BOM 
       run: |
         [ -f *.sch ] && kiplot -d Fabrication -s all  bom_csv
-      - uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: Update Bom
+    - uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Update Bom
 
   FabPCB:
     name: PCB fabrication files
