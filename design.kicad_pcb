@@ -2,7 +2,7 @@
 
   (general
     (thickness 1.6)
-    (drawings 4)
+    (drawings 5)
     (tracks 0)
     (zones 0)
     (modules 5)
@@ -511,6 +511,9 @@
     )
   )
 
+  (gr_text <<hash>> (at 160 90.5) (layer F.SilkS)
+    (effects (font (size 1 1) (thickness 0.15)))
+  )
   (gr_line (start 136.5 92) (end 136.5 80) (layer Edge.Cuts) (width 0.05) (tstamp 616F750E))
   (gr_line (start 165 92) (end 136.5 92) (layer Edge.Cuts) (width 0.05))
   (gr_line (start 165 80) (end 165 92) (layer Edge.Cuts) (width 0.05))
