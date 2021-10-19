@@ -67,6 +67,10 @@ jobs:
     
     - name: Checkout Repository
       uses: actions/checkout@v2
+
+    - name: Assign release version from version.properties to Env variable
+      run: |
+        cat project.properties >> $GITHUB_ENV  
     
     - name: Update the Schematic with the git hash
       run: |
@@ -76,7 +80,7 @@ jobs:
     - name: Retrieve results from git hash update
       uses: actions/upload-artifact@v1
       with:
-        name: Schematic_raw
+        name: Schematic_raw_${{ env.project_name }}
         path: 'design.sch'
 
     - name: Run Schematic and BOM 
