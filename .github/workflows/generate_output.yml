@@ -85,7 +85,7 @@ jobs:
 
     - name: Run Schematic and BOM 
       run: |
-        [ -f *.sch ] && kiplot -d Fabrication -s all  print_sch interactive_bom
+        [ -f *.sch ] && kiplot -d Fabrication -s all  print_sch interactive_bom bom_csv
     - name: Retrieve resulted PDF and BOM
       uses: actions/upload-artifact@v1
       with:
@@ -113,11 +113,10 @@ jobs:
 
     - name: Run Schematic and BOM 
       run: |
-        [ -f *.sch ] && kiplot -d Fabrication -s all bom_csv
-
-    - uses: stefanzweifel/git-auto-commit-action@v4
-      with:
-        commit_message: Update Bom
+        [ -f *.sch ] && kiplot -d Fabrication -s all  bom_csv
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Update Bom
 
   FabPCB:
     name: PCB fabrication files
