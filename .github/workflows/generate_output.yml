@@ -68,7 +68,7 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
-    - name: Assign release version from version.properties to Env variable
+    - name: Assign variables from project.properties to Env variable
       run: |
         cat project.properties >> $GITHUB_ENV  
     
