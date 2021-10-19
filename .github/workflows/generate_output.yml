@@ -80,7 +80,7 @@ jobs:
     - name: Retrieve results from git hash update
       uses: actions/upload-artifact@v1
       with:
-        name: Schematic_raw_${{ env.project_name }}
+        name: ${{ env.project_name }}_Schematic_raw
         path: 'design.sch'
 
     - name: Run Schematic and BOM 
@@ -91,6 +91,33 @@ jobs:
       with:
         name: FabSch_Output
         path: 'Fabrication'
+
+  FabSch:
+    name: Schematic fabrication files
+    runs-on: ubuntu-latest
+    container: setsoft/kicad_auto:latest
+    # needs: ERC
+
+    steps:
+    - name: Update system repositories, Install Required Libraries and Initialize git-lfs
+      run: |
+        apt update
+        apt -y install git
+    
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Assign variables from project.properties to Env variable
+      run: |
+        cat project.properties >> $GITHUB_ENV  
+
+    - name: Run Schematic and BOM 
+      run: |
+        [ -f *.sch ] && kiplot -d Fabrication -s all bom_csv
+
+    - uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Update Bom
 
   FabPCB:
     name: PCB fabrication files
@@ -109,6 +136,10 @@ jobs:
       uses: actions/checkout@v2
       with:
         lfs: true
+
+    - name: Assign variables from project.properties to Env variable
+      run: |
+        cat project.properties >> $GITHUB_ENV 
     
     - name: Update the PCBs with the git hash
       run: |
@@ -118,7 +149,7 @@ jobs:
     - name: Retrieve results kicad_pcb with the git hash
       uses: actions/upload-artifact@v1
       with:
-        name: Kicad_PCB_raw
+        name: ${{ env.project_name }}_Kicad_PCB_raw
         path: 'design.kicad_pcb'
     - name: Run PCB stuff
       run: |
