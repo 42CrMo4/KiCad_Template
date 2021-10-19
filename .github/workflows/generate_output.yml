@@ -116,7 +116,7 @@ jobs:
         [ -f *.sch ] && kiplot -d Fabrication -s all  bom_csv
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
-        epository: /BoM
+        repository: /BoM
         commit_message: Update Bom
 
   FabPCB:
