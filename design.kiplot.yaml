@@ -10,7 +10,7 @@ preflight:
   ignore_unconnected: false
 
 global:
-  output: '%D_%f_rev_%r-%i.%x'
+  # output: '%D_%f_rev_%r-%i.%x'
 
 outputs:
 
