@@ -114,9 +114,14 @@ jobs:
     - name: Run Schematic and BOM 
       run: |
         [ -f *.sch ] && kiplot -d Fabrication -s all  bom_csv
+    - name: Retrieve resulted PDF and BOM
+      uses: actions/upload-artifact@v1
+      with:
+        name: FabSch_Output
+        path: 'Fabrication'
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
-        repository: ./BoM/
+        repository: Fabrication/BoM/
         commit_message: Update Bom
 
   FabPCB:
