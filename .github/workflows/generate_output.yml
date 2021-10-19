@@ -92,8 +92,8 @@ jobs:
         name: FabSch_Output
         path: 'Fabrication'
 
-  FabSch:
-    name: Schematic fabrication files
+  BOM:
+    name: Update Bom and upload
     runs-on: ubuntu-latest
     container: setsoft/kicad_auto:latest
     # needs: ERC
