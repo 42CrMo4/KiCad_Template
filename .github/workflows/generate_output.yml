@@ -1,4 +1,4 @@
-name: CI output Timer
+name: CI output design
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -77,7 +77,7 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: Schematic_raw
-        path: 'Timer.sch'
+        path: 'design.sch'
 
     - name: Run Schematic and BOM 
       run: |
@@ -115,7 +115,7 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: Kicad_PCB_raw
-        path: 'Timer.kicad_pcb'
+        path: 'design.kicad_pcb'
     - name: Run PCB stuff
       run: |
         [ -f *.kicad_pcb ] && kiplot  -d Fabrication -s all print_front print_back gerbers gerber_drills pcb_top_b pcb_bottom_b
