@@ -9,8 +9,8 @@ preflight:
   check_zone_fills: false
   ignore_unconnected: false
 
-global:
-   output: '%D_%f_rev_%r-%i.%x'
+#global:
+  # output: '%D_%f_rev_%r-%i.%x'
 
 outputs:
 
