@@ -79,4 +79,15 @@ F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/ATtiny3216_ATtiny1616-data-
 	1    5000 5750
 	1    0    0    -1  
 $EndComp
+$Comp
+L MCU_Microchip_ATtiny:ATtiny1616-M U?
+U 1 1 61711161
+P 6750 5375
+F 0 "U?" H 6750 6456 50  0000 C CNN
+F 1 "ATtiny1616-M" H 6750 6365 50  0000 C CNN
+F 2 "Package_DFN_QFN:VQFN-20-1EP_3x3mm_P0.4mm_EP1.7x1.7mm" H 6750 5375 50  0001 C CIN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/ATtiny3216_ATtiny1616-data-sheet-40001997B.pdf" H 6750 5375 50  0001 C CNN
+	1    6750 5375
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
