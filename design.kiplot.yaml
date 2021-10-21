@@ -55,6 +55,7 @@ outputs:
     dir: BoM
     options:
       format: CSV
+        hide_pcb_info: True
 
   - name: 'gerbers'
     comment: "Gerbers for the board house"

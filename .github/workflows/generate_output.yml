@@ -99,7 +99,7 @@ jobs:
     # needs: ERC
 
     steps:
-    - name: Update system repositories, Install Required Libraries and Initialize git-lfs
+    - name: Update system repositories, Install Required Libraries
       run: |
         apt update
         apt -y install git
@@ -111,10 +111,10 @@ jobs:
       run: |
         cat project.properties >> $GITHUB_ENV  
 
-    - name: Run Schematic and BOM 
+    - name: Run BOM 
       run: |
         [ -f *.sch ] && kiplot -d Fabrication -s all  bom_csv
-    - name: Retrieve resulted PDF and BOM
+    - name: Retrieve resulted BOM
       uses: actions/upload-artifact@v1
       with:
         name: FabSch_Output
