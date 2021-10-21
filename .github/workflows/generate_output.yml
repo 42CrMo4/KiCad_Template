@@ -120,10 +120,10 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: FabSch_Output
-        path: 'Fabrication'
+        path: 'BoM'
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
-        repository: Fabrication/BoM/
+        repository: BoM/
         commit_message: Update Bom
 
   FabPCB:
