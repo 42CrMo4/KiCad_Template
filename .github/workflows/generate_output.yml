@@ -119,11 +119,11 @@ jobs:
     - name: Retrieve resulted BOM
       uses: actions/upload-artifact@v1
       with:
-        name: FabSch_Output
-        path: 'BoM'
+        name: BoM
+        # path: 'BoM'
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
-        repository: BoM/
+        # repository: BoM/
         commit_message: Update Bom
 
   FabPCB:
