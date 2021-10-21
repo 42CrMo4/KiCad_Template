@@ -52,10 +52,10 @@ outputs:
   - name: 'bom_csv'
     comment: "Bill of Materials in CSV format" 
     type: bom
-    dir: BoM
+    # dir: BoM
     options:
-      format: CSV
-      hide_pcb_info: false
+      format: XML
+      hide_pcb_info: true
 
   - name: 'gerbers'
     comment: "Gerbers for the board house"
