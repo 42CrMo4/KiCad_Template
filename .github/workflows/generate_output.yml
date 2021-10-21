@@ -120,7 +120,7 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: BoM
-        # path: 'BoM'
+        path: '.'
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
         # repository: BoM/
