@@ -118,11 +118,11 @@ jobs:
     - name: Run BOM 
       run: |
         [ -f *.sch ] && kiplot -d Fabrication -s all bom_csv
-    #- name: Retrieve resulted BOM
-    #  uses: actions/upload-artifact@v1
-    #  with:
-    #    name: BoM
-    #    path: 'Fabrication'
+    - name: Retrieve resulted BOM
+      uses: actions/upload-artifact@v1
+      with:
+        name: BoM
+        path: 'Fabrication'
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
         repository: Fabrication/
