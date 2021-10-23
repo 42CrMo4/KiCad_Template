@@ -119,6 +119,7 @@ jobs:
     - name: Run BOM 
       run: |
         [ -f *.sch ] && kiplot -d Fabrication -s all bom_csv
+        head -n -2 Fabrication/BoM/design-bom.csv
     - name: Retrieve resulted BOM
       uses: actions/upload-artifact@v1
       with:
