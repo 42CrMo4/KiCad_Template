@@ -68,15 +68,4 @@ F 3 "~" H 7775 3850 50  0001 C CNN
 	1    7775 3850
 	1    0    0    -1  
 $EndComp
-$Comp
-L Audio:AD1853 U3
-U 1 1 6174A6D7
-P 9400 2700
-F 0 "U3" H 9400 3781 50  0000 C CNN
-F 1 "AD1853" H 9400 3690 50  0000 C CNN
-F 2 "Package_SO:SSOP-28_5.3x10.2mm_P0.65mm" H 9850 1700 50  0001 C CNN
-F 3 "https://www.analog.com/media/en/technical-documentation/data-sheets/AD1853.pdf" H 9400 2700 50  0001 C CNN
-	1    9400 2700
-	1    0    0    -1  
-$EndComp
 $EndSCHEMATC
