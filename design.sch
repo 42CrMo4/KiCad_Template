@@ -79,4 +79,15 @@ F 3 "http://www.cosmacelf.com/publications/data-sheets/cdp1802.pdf" H 9400 4975 
 	1    9400 2975
 	1    0    0    -1  
 $EndComp
+$Comp
+L Video:TDA8702T U?
+U 1 1 6174D894
+P 4500 1750
+F 0 "U?" H 4500 2731 50  0000 C CNN
+F 1 "TDA8702T" H 4500 2640 50  0000 C CNN
+F 2 "" H 4500 1650 50  0001 C CIN
+F 3 "philips/tda8702.pdf" H 4500 1650 50  0001 C CNN
+	1    4500 1750
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
