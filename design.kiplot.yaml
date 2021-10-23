@@ -52,7 +52,7 @@ outputs:
   - name: 'bom_csv'
     comment: "Bill of Materials in CSV format" 
     type: bom
-    # dir: BoM
+    dir: BoM
     options:
       format: XML
       hide_pcb_info: true
