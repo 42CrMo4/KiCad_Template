@@ -90,4 +90,15 @@ F 3 "philips/tda8702.pdf" H 4500 1650 50  0001 C CNN
 	1    4500 1750
 	1    0    0    -1  
 $EndComp
+$Comp
+L Comparator:LM311 U?
+U 1 1 6174E38B
+P 7900 1150
+F 0 "U?" H 8244 1196 50  0000 L CNN
+F 1 "LM311" H 8244 1105 50  0000 L CNN
+F 2 "" H 7900 1150 50  0001 C CNN
+F 3 "https://www.st.com/resource/en/datasheet/lm311.pdf" H 7900 1150 50  0001 C CNN
+	1    7900 1150
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
