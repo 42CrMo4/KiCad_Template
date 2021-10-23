@@ -68,4 +68,15 @@ F 3 "~" H 7775 3850 50  0001 C CNN
 	1    7775 3850
 	1    0    0    -1  
 $EndComp
+$Comp
+L CPU:CDP1802ACE U?
+U 1 1 6174CECA
+P 9400 2975
+F 0 "U?" H 9400 1486 50  0000 C CNN
+F 1 "CDP1802ACE" H 9400 1395 50  0000 C CNN
+F 2 "Package_DIP:DIP-40_W15.24mm" H 9400 4875 50  0001 C CNN
+F 3 "http://www.cosmacelf.com/publications/data-sheets/cdp1802.pdf" H 9400 4975 50  0001 C CNN
+	1    9400 2975
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
