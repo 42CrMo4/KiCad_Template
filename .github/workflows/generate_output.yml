@@ -125,7 +125,7 @@ jobs:
         path: 'Fabrication'
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
-        repository: Fabrication/
+        repository: .
         commit_message: Update Bom
 
   FabPCB:
