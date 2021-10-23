@@ -69,14 +69,25 @@ F 3 "~" H 7775 3850 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Audio:AD1853 U?
+L Audio:AD1853 U3
 U 1 1 6174A6D7
 P 9400 2700
-F 0 "U?" H 9400 3781 50  0000 C CNN
+F 0 "U3" H 9400 3781 50  0000 C CNN
 F 1 "AD1853" H 9400 3690 50  0000 C CNN
 F 2 "Package_SO:SSOP-28_5.3x10.2mm_P0.65mm" H 9850 1700 50  0001 C CNN
 F 3 "https://www.analog.com/media/en/technical-documentation/data-sheets/AD1853.pdf" H 9400 2700 50  0001 C CNN
 	1    9400 2700
+	1    0    0    -1  
+$EndComp
+$Comp
+L Battery_Management:ADP5063 U2
+U 1 1 6174B0B1
+P 1300 1675
+F 0 "U2" H 1300 2442 50  0000 C CNN
+F 1 "ADP5063" H 1300 2351 50  0000 C CNN
+F 2 "Package_DFN_QFN:QFN-20-1EP_4x4mm_P0.5mm_EP2.5x2.5mm" H 1550 775 50  0001 C CNN
+F 3 "https://www.analog.com/media/en/technical-documentation/data-sheets/ADP5063.pdf" H -900 3125 50  0001 C CNN
+	1    1300 1675
 	1    0    0    -1  
 $EndComp
 $EndSCHEMATC
