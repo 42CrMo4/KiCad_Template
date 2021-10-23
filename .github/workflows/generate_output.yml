@@ -119,11 +119,11 @@ jobs:
       run: |
         [ -f *.sch ] && kiplot -d Fabrication -s all  bom_csv
     - name: Commit report
-        run: |
-          git config --global user.name 'BoM Bot'
-          git config --global user.email 'your-username@users.noreply.github.com'
-          git commit -am "Update Bom"
-          git push
+      run: |
+        git config --global user.name 'BoM Bot'
+        git config --global user.email 'your-username@users.noreply.github.com'
+        git commit -am "Update Bom"
+        git push
     #- name: Retrieve resulted BOM
     #  uses: actions/upload-artifact@v1
     #  with:
