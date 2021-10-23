@@ -54,8 +54,8 @@ outputs:
     type: bom
     dir: BoM
     options:
-      format: XML
-      hide_pcb_info: true
+      format: CSV
+    #  hide_pcb_info: true
 
   - name: 'gerbers'
     comment: "Gerbers for the board house"
