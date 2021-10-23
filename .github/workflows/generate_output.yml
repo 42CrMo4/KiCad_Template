@@ -117,7 +117,7 @@ jobs:
 
     - name: Run BOM 
       run: |
-        [ -f *.sch ] && kiplot -d Fabrication -s all  bom_csv
+        [ -f *.sch ] && kiplot -s all bom_csv
     - name: Commit report
       run: |
         git config --global user.name 'BoM Bot'
