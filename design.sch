@@ -79,4 +79,15 @@ F 3 "" H 9025 2075 50  0001 C CNN
 	1    9025 2075
 	1    0    0    -1  
 $EndComp
+$Comp
+L Audio:AD1853 U3
+U 1 1 617486A5
+P 4375 5125
+F 0 "U3" H 4375 6206 50  0000 C CNN
+F 1 "AD1853" H 4375 6115 50  0000 C CNN
+F 2 "Package_SO:SSOP-28_5.3x10.2mm_P0.65mm" H 4825 4125 50  0001 C CNN
+F 3 "https://www.analog.com/media/en/technical-documentation/data-sheets/AD1853.pdf" H 4375 5125 50  0001 C CNN
+	1    4375 5125
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
