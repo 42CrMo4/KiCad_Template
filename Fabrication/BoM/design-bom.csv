@@ -3,6 +3,7 @@ Row,Description,Part,References,Value,Footprint,Quantity Per PCB,Status,Datashee
 2,"Generic connector, single row, 01x05, script generated (kicad-library-utils/schlib/autogen/connector/)",Conn_01x05,J2,Conn_01x05,UDPI_interface,1, ,~
 3,USB Full-Featured Type-C Receptacle connector,USB_C_Receptacle,J1,USB_C_Receptacle,USB_C_Receptacle_HRO_TYPE-C-31-M-12,1, ,https://www.usb.org/sites/default/files/documents/usb_type-c.zip
 4,"20MHz, 16kB Flash, 2kB SRAM, 256B EEPROM, VQFN-20",ATtiny1616-M,U1,ATtiny1616-M,VQFN-20-1EP_3x3mm_P0.4mm_EP1.7x1.7mm,1, ,http://ww1.microchip.com/downloads/en/DeviceDoc/ATtiny3216_ATtiny1616-data-sheet-40001997B.pdf
+5,"8-bit, General Purpose, 5V, 3.2 MHz, DIP-40",CDP1802ACE,U?,CDP1802ACE,DIP-40_W15.24mm,1, ,http://www.cosmacelf.com/publications/data-sheets/cdp1802.pdf
 
 
 
@@ -15,8 +16,8 @@ Revision:,<<hash>>
 Date:,<<date>>
 KiCad Version:,5.1.9+dfsg1-1~bpo10+1
 Statistics:
-Component Groups:,4
-Component Count:,5
-Fitted Components:,5
+Component Groups:,5
+Component Count:,6
+Fitted Components:,6
 Number of PCBs:,1
-Total Components:,5
+Total Components:,6
