@@ -11,13 +11,3 @@ Row,Description,Part,References,Value,Footprint,Quantity Per PCB,Status,Datashee
 
 
 
-Project info:
-Schematic:,design
-Variant:,default
-Revision:,<<hash>>
-Date:,<<date>>
-KiCad Version:,5.1.9+dfsg1-1~bpo10+1
-Statistics:
-Component Groups:,7
-Component Count:,8
-Fitted Components:,8
