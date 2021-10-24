@@ -311,11 +311,6 @@
            (xy -0.35 -0.05) (xy 0.299289 -0.05) (xy 0.35 0.000711) (xy 0.35 0.05) (xy -0.35 0.05)
 ) (width 0.1))
       ))
-    (model ${KISYS3DMOD}/Package_DFN_QFN.3dshapes/VQFN-20-1EP_3x3mm_P0.4mm_EP1.7x1.7mm.wrl
-      (at (xyz 0 0 0))
-      (scale (xyz 1 1 1))
-      (rotate (xyz 0 0 0))
-    )
     (model ${KIPRJMOD}/3d-models/VQFN-20.STEP
       (at (xyz 0 0 0))
       (scale (xyz 0.7 1 0.7))
