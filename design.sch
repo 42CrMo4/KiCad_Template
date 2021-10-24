@@ -68,37 +68,4 @@ F 3 "~" H 7775 3850 50  0001 C CNN
 	1    7775 3850
 	1    0    0    -1  
 $EndComp
-$Comp
-L CPU:CDP1802ACE U?
-U 1 1 6174CECA
-P 9400 2975
-F 0 "U?" H 9400 1486 50  0000 C CNN
-F 1 "CDP1802ACE" H 9400 1395 50  0000 C CNN
-F 2 "Package_DIP:DIP-40_W15.24mm" H 9400 4875 50  0001 C CNN
-F 3 "http://www.cosmacelf.com/publications/data-sheets/cdp1802.pdf" H 9400 4975 50  0001 C CNN
-	1    9400 2975
-	1    0    0    -1  
-$EndComp
-$Comp
-L Video:TDA8702T U?
-U 1 1 6174D894
-P 4500 1750
-F 0 "U?" H 4500 2731 50  0000 C CNN
-F 1 "TDA8702T" H 4500 2640 50  0000 C CNN
-F 2 "" H 4500 1650 50  0001 C CIN
-F 3 "philips/tda8702.pdf" H 4500 1650 50  0001 C CNN
-	1    4500 1750
-	1    0    0    -1  
-$EndComp
-$Comp
-L Comparator:LM311 U?
-U 1 1 6174E38B
-P 7900 1150
-F 0 "U?" H 8244 1196 50  0000 L CNN
-F 1 "LM311" H 8244 1105 50  0000 L CNN
-F 2 "" H 7900 1150 50  0001 C CNN
-F 3 "https://www.st.com/resource/en/datasheet/lm311.pdf" H 7900 1150 50  0001 C CNN
-	1    7900 1150
-	1    0    0    -1  
-$EndComp
 $EndSCHEMATC
