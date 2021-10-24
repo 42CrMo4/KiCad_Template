@@ -108,7 +108,15 @@ jobs:
       run: |
         apt update
         apt -y install git
-        pip3 install csvtomd
+    - name: Set up python 3.7
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.7
+    - name: Install dependencies
+      run: |
+        cd src
+        python -m pip install --upgrade pip
+        pip install csvtomd
     
     - name: Checkout Repository
       uses: actions/checkout@v2
@@ -121,6 +129,8 @@ jobs:
       run: |
         [ -f *.sch ] && kiplot -d Fabrication -s all bom_csv
         head -n -12 Fabrication/BoM/design-bom.csv > Fabrication/BoM/design-bom-small.csv
+        csvtomd Fabrication/BoM/design-bom-small.csv
+        head  >> readme.md  
     - name: Retrieve resulted BOM
       uses: actions/upload-artifact@v1
       with:
