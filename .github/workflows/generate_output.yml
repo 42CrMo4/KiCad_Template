@@ -107,7 +107,7 @@ jobs:
     - name: Set up python 3.7
       uses: actions/setup-python@v2
       with:
-        python-version: 3.7
+        python-version: 3.x
     - name: Update system repositories, Install Required Libraries
       run: |
         apt update
