@@ -144,7 +144,7 @@ outputs:
     options:
       format: png
       style: set-blue-enig
-      show_components: all
+      show_components: none
       dpi: 600
 
   - name: pcb_bottom_b

@@ -118,7 +118,7 @@ jobs:
 
     - name: Run BOM 
       run: |
-        [ -f *.sch ] && kiplot -d Fabrication -s all bom_csv pcb_top_b step 
+        [ -f *.sch ] && kiplot -d Fabrication -s all bom_csv pcb_top_b step
         head -n -12 Fabrication/BoM/design-bom.csv > Fabrication/BoM/design-bom-short.csv 
     - name: Retrieve resulted BOM
       uses: actions/upload-artifact@v1
