@@ -118,13 +118,13 @@ jobs:
 
     - name: Run BOM 
       run: |
-        [ -f *.sch ] && kiplot -d Fabrication -s all bom_csv pcb_top_b step
+        [ -f *.sch ] && kiplot -d Fabrication -s all bom_csv pcb_top_b
         head -n -12 Fabrication/BoM/design-bom.csv > Fabrication/BoM/design-bom-short.csv 
-    - name: Retrieve resulted BOM
-      uses: actions/upload-artifact@v1
-      with:
-        name: BoM
-        path: 'Fabrication'
+    #- name: Retrieve resulted BOM
+    #  uses: actions/upload-artifact@v1
+    #  with:
+    #    name: BoM
+    #    path: 'Fabrication'
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
         repository: .
@@ -166,7 +166,7 @@ jobs:
         path: 'design.kicad_pcb'
     - name: Run PCB stuff
       run: |
-        [ -f *.kicad_pcb ] && kiplot  -d Fabrication -s all print_front print_back gerbers gerber_drills pcb_top_b pcb_bottom_b
+        [ -f *.kicad_pcb ] && kiplot  -d Fabrication -s all print_front print_back gerbers gerber_drills pcb_top_b pcb_bottom_b step
     - name: Retrieve results
       uses: actions/upload-artifact@v1
       with:
