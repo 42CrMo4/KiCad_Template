@@ -104,13 +104,6 @@ jobs:
     # needs: ERC
 
     steps:
-    - name: Set up python 3.7
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.x
-    - uses: BSFishy/pip-action@v1
-      with:
-        packages: csvtomd
     - name: Update system repositories, Install Required Libraries
       run: |
         apt update
@@ -126,9 +119,7 @@ jobs:
     - name: Run BOM 
       run: |
         [ -f *.sch ] && kiplot -d Fabrication -s all bom_csv
-        head -n -12 Fabrication/BoM/design-bom.csv > Fabrication/BoM/design-bom-small.csv
-        csvtomd Fabrication/BoM/design-bom-small.csv
-        head  >> readme.md  
+        head -n -12 Fabrication/BoM/design-bom.csv > Fabrication/BoM/design-bom-short.csv 
     - name: Retrieve resulted BOM
       uses: actions/upload-artifact@v1
       with:
