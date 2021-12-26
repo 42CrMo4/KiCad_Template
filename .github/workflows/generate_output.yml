@@ -89,7 +89,7 @@ jobs:
 
     - name: Run Schematic and BOM 
       run: |
-        [ -f *.sch ] && kiplot -d Fabrication -s all  print_sch interactive_bom 
+        [ -f design.sch ] && kiplot -d Fabrication -s all  print_sch interactive_bom 
     #bom_csv
     - name: Retrieve resulted PDF and BOM
       uses: actions/upload-artifact@v1
@@ -166,7 +166,7 @@ jobs:
         path: 'design.kicad_pcb'
     - name: Run PCB stuff
       run: |
-        [ -f *.kicad_pcb ] && kiplot  -d Fabrication -s all print_front print_back gerbers gerber_drills pcb_top_b pcb_bottom_b step
+        [ -f design.kicad_pcb ] && kiplot  -d Fabrication -s all print_front print_back gerbers gerber_drills pcb_top_b pcb_bottom_b step
     - name: Retrieve results
       uses: actions/upload-artifact@v1
       with:
