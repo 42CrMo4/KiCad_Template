@@ -32,9 +32,6 @@ jobs:
     - name: Assign variables from project.properties to Env variable
       run: |
         cat project.properties >> $GITHUB_ENV  
-
-    - name: Version to env
-        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
     
     - name: Update the Schematic with the git hash
       run: |
@@ -43,7 +40,7 @@ jobs:
         sed -i "s!<<hash>>!Git-${COMMIT}!" *.sch
         sed -i "s!<<project_name>>!${{ env.project_name }}!" *.sch
         sed -i "s!<<date>>!$(date +'%Y-%m-%d')!" *.sch 
-        sed -i "s!<<version>>!${{ env.RELEASE_VERSION }}!" *.sch 
+        sed -i "s!<<version>>!${{ github.ref_name }}!" *.sch 
     - name: Retrieve results from git hash update
       uses: actions/upload-artifact@v1
       with:
@@ -57,6 +54,7 @@ jobs:
         sed -i "s!<<hash>>!Git-${COMMIT}!" *.kicad_pcb
         sed -i "s!<<project_name>>!${{ env.project_name }}!" *.kicad_pcb
         sed -i "s!<<date>>!$(date +'%Y-%m-%d')!" *.kicad_pcb 
+        sed -i "s!<<version>>!${{ github.ref_name }}!" *.kicad_pcb 
     - name: Retrieve results kicad_pcb with the git hash
       uses: actions/upload-artifact@v1
       with:
