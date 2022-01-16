@@ -112,7 +112,7 @@ outputs:
   - name: gerber_drills
     comment: "Gerber drill files"
     type: gerb_drill
-    dir: Gerbers
+    dir: .
     options:
       use_aux_axis_as_origin: false
 
