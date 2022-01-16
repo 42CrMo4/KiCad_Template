@@ -4,12 +4,10 @@ name: Release Design
 # events but only for the master branch
 on:
   push:
-    branches: [ main ]
     tags:
       - 'v*'
 
   pull_request:
-    branches: [ main ]
     tags:
       - 'v*'
 
