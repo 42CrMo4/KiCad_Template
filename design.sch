@@ -6,12 +6,12 @@ encoding utf-8
 Sheet 1 1
 Title "<<project_name>>"
 Date "<<date>>"
-Rev "<<hash>>"
+Rev "<<version>>"
 Comp ""
 Comment1 ""
 Comment2 ""
 Comment3 ""
-Comment4 ""
+Comment4 "<<hash>>"
 $EndDescr
 $Comp
 L MCU_Microchip_ATtiny:ATtiny1616-M U1
