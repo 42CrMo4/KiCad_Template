@@ -5,11 +5,11 @@ name: Release Design
 on:
   push:
     tags:
-      - 'v*'
+      - 'v*.*.*'
 
   pull_request:
     tags:
-      - 'v*'
+      - 'v*.*.*'
  
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -41,11 +41,6 @@ jobs:
         sed -i "s!<<project_name>>!${{ env.project_name }}!" *.sch
         sed -i "s!<<date>>!$(date +'%Y-%m-%d')!" *.sch 
         sed -i "s!<<version>>!${{ github.ref_name }}!" *.sch 
-    - name: Retrieve results from git hash update
-      uses: actions/upload-artifact@v1
-      with:
-        name: ${{ env.project_name }}_Schematic_raw
-        path: 'design.sch'
 
     - name: Update the PCBs with the git hash
       run: |
@@ -55,23 +50,13 @@ jobs:
         sed -i "s!<<project_name>>!${{ env.project_name }}!" *.kicad_pcb
         sed -i "s!<<date>>!$(date +'%Y-%m-%d')!" *.kicad_pcb 
         sed -i "s!<<version>>!${{ github.ref_name }}!" *.kicad_pcb 
-    - name: Retrieve results kicad_pcb with the git hash
-      uses: actions/upload-artifact@v1
-      with:
-        name: ${{ env.project_name }}_Kicad_PCB_raw
-        path: 'design.kicad_pcb'
 
     - name: Run Schematic and BOM 
       run: |
         [ -f design.sch ] && kiplot -d Fabrication -s all  print_sch interactive_bom 
-    #bom_csv
-    - name: Retrieve resulted PDF and BOM
-      uses: actions/upload-artifact@v1
-      with:
-        name: FabSch_Output
-        path: 'Fabrication'
+
     - uses: ncipollo/release-action@v1
       with:
-        artifacts: "Fabrication/*, Fabrication/BoM/*ibom*, ${{ env.project_name }}_Schematic_raw"
+        artifacts: "Fabrication/*, Fabrication/BoM/*ibom*, *.sch"
         bodyFile: "body.md"
         token: ${{ secrets.GITHUB_TOKEN }}
