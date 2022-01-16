@@ -55,8 +55,20 @@ jobs:
       run: |
         [ -f design.sch ] && kiplot -d Fabrication -s all  print_sch interactive_bom 
 
+    - name: Run PCB stuff
+      run: |
+        [ -f design.kicad_pcb ] && kiplot  -d Fabrication -s all print_front print_back pcb_top_b pcb_bottom_b step
+
+    - name: Run PCB stuff
+      run: |
+        [ -f design.kicad_pcb ] && kiplot  -d Gerber -s all gerbers gerber_drills
+
+    - uses: montudor/action-zip@v1
+      with:
+        args: zip -qq -r Gerber.zip Gerber
+
     - uses: ncipollo/release-action@v1
       with:
-        artifacts: "Fabrication/*, Fabrication/BoM/*ibom*, *.sch"
+        artifacts: "Fabrication/*, Fabrication/BoM/*ibom*, *.sch, Gerber.zib, *.kicad.pcb"
         bodyFile: "body.md"
         token: ${{ secrets.GITHUB_TOKEN }}
