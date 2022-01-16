@@ -59,7 +59,7 @@ jobs:
       run: |
         [ -f design.kicad_pcb ] && kiplot  -d Fabrication -s all print_front print_back pcb_top_b pcb_bottom_b step gerbers gerber_drills
 
-    - uses: papeloto/action-zip@v1
+    - uses: vimtor/action-zip@v1
       with:
         files: Fabrication/Gerbers/
         recursive: false
