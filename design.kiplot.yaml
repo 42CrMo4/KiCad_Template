@@ -15,19 +15,19 @@ preflight:
 
 outputs:
 
-  - name: 'QRCodes'
-    comment: "Example of QR codes"
-    type: qr_lib
-    options:
-      output: 'qr.%x'
-      qrs:
-        - size_sch: 1
-          size_pcb: 2
-          size_units: millimeters
-          layer: copper
-        - name: QR2
-          text: 'https://github.com/INTI-CMNB/KiBot/'
-          correction_level: 'high'
+  # - name: 'QRCodes'
+  #   comment: "Example of QR codes"
+  #   type: qr_lib
+  #   options:
+  #     output: 'qr.%x'
+  #     qrs:
+  #       - size_sch: 1
+  #         size_pcb: 2
+  #         size_units: millimeters
+  #         layer: copper
+  #       - name: QR2
+  #         text: 'https://github.com/INTI-CMNB/KiBot/'
+  #         correction_level: 'high'
 
   - name: 'print_sch'
     comment: "Print schematic (PDF)"
