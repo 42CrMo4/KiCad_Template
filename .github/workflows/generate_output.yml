@@ -32,11 +32,11 @@ jobs:
     - name: Run ERC
       run: |
         [ -f *.sch ] && kiplot  -d Fabrication -s update_xml,run_drc -i
-    - name: Retrieve results
-      uses: actions/upload-artifact@v1
-      with:
-        name: ERC_Output
-        path: Fabrication
+    # - name: Retrieve results
+    #   uses: actions/upload-artifact@v1
+    #   with:
+    #     name: ERC_Output
+    #     path: Fabrication
 
   DRC:
     runs-on: ubuntu-latest
@@ -49,11 +49,11 @@ jobs:
     - name: Run DRC
       run: |
         [ -f *.kicad_pcb ] && kiplot  -d Fabrication -s update_xml,run_erc -i
-    - name: Retrieve results
-      uses: actions/upload-artifact@v1
-      with:
-        name: DRC_Output
-        path: Fabrication
+    # - name: Retrieve results
+    #   uses: actions/upload-artifact@v1
+    #   with:
+    #     name: DRC_Output
+    #     path: Fabrication
 
   FabSch:
     name: Schematic fabrication files
