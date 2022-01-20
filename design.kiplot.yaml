@@ -8,7 +8,7 @@ preflight:
   run_drc: false
   check_zone_fills: false
   ignore_unconnected: false
-  update_qr: true
+  #update_qr: true
 
 #global:
   # output: '%D_%f_rev_%r-%i.%x'
