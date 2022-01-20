@@ -81,6 +81,7 @@ jobs:
         sed -i "s!<<hash>>!Git-${COMMIT}!" *.sch
         sed -i "s!<<project_name>>!${{ env.project_name }}!" *.sch
         sed -i "s!<<date>>!$(date +'%Y-%m-%d')!" *.sch 
+        sed -i "s!<<ID>>!${{ env.ID_prefix }}${{ env.ID }}!" *.sch 
     - name: Retrieve results from git hash update
       uses: actions/upload-artifact@v1
       with:
@@ -159,6 +160,7 @@ jobs:
         sed -i "s!<<hash>>!Git-${COMMIT}!" *.kicad_pcb
         sed -i "s!<<project_name>>!${{ env.project_name }}!" *.kicad_pcb
         sed -i "s!<<date>>!$(date +'%Y-%m-%d')!" *.kicad_pcb 
+        sed -i "s!<<ID>>!${{ env.ID_prefix }}${{ env.ID }}!" *.kicad_pcb 
     - name: Retrieve results kicad_pcb with the git hash
       uses: actions/upload-artifact@v1
       with:

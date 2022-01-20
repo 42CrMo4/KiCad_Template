@@ -31,7 +31,7 @@ jobs:
 
     - name: Assign variables from project.properties to Env variable
       run: |
-        cat project.properties >> $GITHUB_ENV  
+        cat project.properties >> $GITHUB_ENV 
     
     - name: Update the Schematic with the git hash
       run: |
@@ -41,6 +41,7 @@ jobs:
         sed -i "s!<<project_name>>!${{ env.project_name }}!" *.sch
         sed -i "s!<<date>>!$(date +'%Y-%m-%d')!" *.sch 
         sed -i "s!<<version>>!${{ github.ref_name }}!" *.sch 
+        sed -i "s!<<ID>>!${{ env.ID_prefix }}${{ env.ID }}!" *.sch 
 
     - name: Update the PCBs with the git hash
       run: |
@@ -50,6 +51,7 @@ jobs:
         sed -i "s!<<project_name>>!${{ env.project_name }}!" *.kicad_pcb
         sed -i "s!<<date>>!$(date +'%Y-%m-%d')!" *.kicad_pcb 
         sed -i "s!<<version>>!${{ github.ref_name }}!" *.kicad_pcb 
+        sed -i "s!<<ID>>!${{ env.ID_prefix }}${{ env.ID }}!" *.kicad_pcb 
 
     - name: Run Schematic and BOM 
       run: |
