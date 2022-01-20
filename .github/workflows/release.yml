@@ -72,5 +72,5 @@ jobs:
     - uses: ncipollo/release-action@v1
       with:
         artifacts: "Fabrication/*, Fabrication/BoM/*ibom*, *.sch, Gerber.zip, *.kicad_pcb, Fabrication/3D/*.step, Fabrication/PCB/blue/*"
-        bodyFile: "body.md"
+        bodyFile: "release_note.md"
         token: ${{ secrets.GITHUB_TOKEN }}
