@@ -2,8 +2,8 @@
 
 ## Todo
 
-* add DRC, ERC as seperate WF
-* add DRC, ERC to release WF as blocking
+* ~add DRC, ERC as seperate WF~ 
+* ~add DRC, ERC to release WF as blocking~
 * add release checklist
 
 Description. 
