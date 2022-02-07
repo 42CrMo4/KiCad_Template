@@ -13,12 +13,48 @@ on:
  
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  ERC:
+    runs-on: ubuntu-latest
+    container: setsoft/kicad_auto:latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Run ERC
+      run: |
+        [ -f *.sch ] && kiplot  -d Fabrication -s update_xml,run_drc -i
+    # - name: Retrieve results
+    #   uses: actions/upload-artifact@v1
+    #   with:
+    #     name: ERC_Output
+    #     path: Fabrication
+
+  DRC:
+    runs-on: ubuntu-latest
+    container: setsoft/kicad_auto:latest
+    needs: ERC
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Run DRC
+      run: |
+        [ -f *.kicad_pcb ] && kiplot  -d Fabrication -s update_xml,run_erc -i
+    # - name: Retrieve results
+    #   uses: actions/upload-artifact@v1
+    #   with:
+    #     name: DRC_Output
+    #     path: Fabrication
+    
   FabSch:
-    name: Schematic fabrication files
+    name: Fabrication files
     runs-on: ubuntu-latest
     permissions:
       contents: write
     container: setsoft/kicad_auto:latest
+    needs: |
+      ERC
+      DRC
 
     steps:
     - name: Update system repositories, Install Required Libraries and Initialize git-lfs
