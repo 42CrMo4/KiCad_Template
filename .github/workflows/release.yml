@@ -52,9 +52,7 @@ jobs:
     permissions:
       contents: write
     container: setsoft/kicad_auto:latest
-    needs: |
-      ERC
-      DRC
+    needs: DRC
 
     steps:
     - name: Update system repositories, Install Required Libraries and Initialize git-lfs
