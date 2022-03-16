@@ -1,5 +1,7 @@
 # KiCad_Template
 
+Add Text
+
 ## Todo
 
 * ~add DRC, ERC as seperate WF~ 
