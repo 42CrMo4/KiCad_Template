@@ -6,7 +6,9 @@ Add Text
 
 * ~add DRC, ERC as seperate WF~ 
 * ~add DRC, ERC to release WF as blocking~
-* add release checklist
+* ~add release checklist~
+* order release checklist
+* add workflow to automatically create new realease checklist and realease note file and reset the generic for the next release
 
 Description. 
 
