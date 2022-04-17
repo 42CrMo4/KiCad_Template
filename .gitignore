@@ -13,10 +13,12 @@
 *.sch-bak
 *~
 _autosave-*
+*_autosave-*
 *.tmp
 *-save.pro
 *-save.kicad_pcb
 fp-info-cache
+.kicad_prl
 
 # Netlist files (exported from Eeschema)
 *.net
@@ -31,6 +33,7 @@ fp-info-cache
 
 ### KiCad Patch ###
 rescue-backup/
+design-backups/
 
 *.tsv
 # bom/

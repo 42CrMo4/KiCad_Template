@@ -6,7 +6,7 @@ on:
   push:
     branches: [ main ]
     paths:
-      - '*.sch'
+      - '*.kicad_sch'
       - '*.kicad_pcb'
       - '*.kiplot.yaml'
       - '.github/workflows/generate_output.yml'
@@ -14,7 +14,7 @@ on:
   pull_request:
     branches: [ main ]
     paths:
-      - '*.sch'
+      - '*.kicad_sch'
       - '*.kicad_pcb'
       - '*.kiplot.yaml'
       - '.github/workflows/generate_output.yml'
@@ -24,23 +24,23 @@ on:
 jobs:
   ERC:
     runs-on: ubuntu-latest
-    container: setsoft/kicad_auto:latest
+    container: setsoft/kicad_auto:dev_k6
 
     steps:
     - uses: actions/checkout@v2
 
     - name: Run ERC
       run: |
-        [ -f *.sch ] && kiplot  -d Fabrication -s update_xml,run_drc -i
+        [ -f *.kicad_sch ] && kiplot  -d Fabrication_temp -s update_xml,run_drc -i
     # - name: Retrieve results
     #   uses: actions/upload-artifact@v1
     #   with:
     #     name: ERC_Output
-    #     path: Fabrication
+    #     path: Fabrication_temp
 
   DRC:
     runs-on: ubuntu-latest
-    container: setsoft/kicad_auto:latest
+    container: setsoft/kicad_auto:dev_k6
     needs: ERC
 
     steps:
@@ -48,17 +48,17 @@ jobs:
 
     - name: Run DRC
       run: |
-        [ -f *.kicad_pcb ] && kiplot  -d Fabrication -s update_xml,run_erc -i
+        [ -f *.kicad_pcb ] && kiplot  -d Fabrication_temp -s update_xml,run_erc -i
     # - name: Retrieve results
     #   uses: actions/upload-artifact@v1
     #   with:
     #     name: DRC_Output
-    #     path: Fabrication
+    #     path: Fabrication_temp
 
   FabSch:
     name: Schematic fabrication files
     runs-on: ubuntu-latest
-    container: setsoft/kicad_auto:latest
+    container: setsoft/kicad_auto:dev_k6
     # needs: ERC
 
     steps:
@@ -78,25 +78,25 @@ jobs:
       run: |
         export COMMIT=$(git rev-parse --short HEAD)
         echo "COMMIT = ${COMMIT}"
-        sed -i "s!<<hash>>!Git-${COMMIT}!" *.sch
-        sed -i "s!<<project_name>>!${{ env.project_name }}!" *.sch
-        sed -i "s!<<date>>!$(date +'%Y-%m-%d')!" *.sch 
-        sed -i "s!<<ID>>!${{ env.ID_prefix }}${{ env.ID }}!" *.sch 
+        sed -i "s!<<hash>>!Git-${COMMIT}!" *.kicad_sch
+        sed -i "s!<<project_name>>!${{ env.project_name }}!" *.kicad_sch
+        sed -i "s!<<date>>!$(date +'%Y-%m-%d')!" *.kicad_sch 
+        sed -i "s!<<ID>>!${{ env.ID_prefix }}${{ env.ID }}!" *.kicad_sch 
     - name: Retrieve results from git hash update
       uses: actions/upload-artifact@v1
       with:
         name: ${{ env.project_name }}_Schematic_raw
-        path: 'design.sch'
+        path: 'design.kicad_sch'
 
     - name: Run Schematic and BOM 
       run: |
-        [ -f design.sch ] && kiplot -d Fabrication -s all  print_sch interactive_bom
+        [ -f design.kicad_sch ] && kiplot -d Fabrication_temp -s all  print_sch interactive_bom
     #bom_csv
-    - name: Retrieve resulted PDF and BOM
-      uses: actions/upload-artifact@v1
-      with:
-        name: FabSch_Output
-        path: 'Fabrication'
+  #  - name: Retrieve resulted PDF and BOM
+  #    uses: actions/upload-artifact@v1
+  #    with:
+  #      name: FabSch_Output
+  #      path: 'Fabrication_temp'
 
   # BOM:
   #   name: Update Bom and upload
@@ -119,35 +119,36 @@ jobs:
 
   #   - name: Run BOM 
   #     run: |
-  #       [ -f *.sch ] && kiplot -d Fabrication -s all bom_csv pcb_top_b
-  #       head -n -12 Fabrication/BoM/design-bom.csv > Fabrication/BoM/design-bom-short.csv 
+  #       [ -f *.kicad_sch ] && kiplot -d Fabrication_temp -s all bom_csv pcb_top_b
+  #       head -n -12 Fabrication_temp/BoM/design-bom.csv > Fabrication_temp/BoM/design-bom-short.csv 
   #   #- name: Retrieve resulted BOM
   #   #  uses: actions/upload-artifact@v1
   #   #  with:
   #   #    name: BoM
-  #   #    path: 'Fabrication'
+  #   #    path: 'Fabrication_temp'
   #   - uses: stefanzweifel/git-auto-commit-action@v4
   #     with:
   #       repository: .
   #       commit_message: Update Bom
 
-  FabPCB:
-    name: PCB fabrication files
-    runs-on: ubuntu-latest
-    container: setsoft/kicad_auto:latest
+  #FabPCB:
+  #  name: PCB fabrication files
+  #  runs-on: ubuntu-latest
+  #  container: setsoft/kicad_auto:dev_k6
     # needs: DRC
+  #  
+  #  steps:
+  #  - name: Update system repositories, Install Required Libraries and Initialize git-lfs
+  #    run: |
+  #      apt update
+  #      apt -y install git git-lfs zip librsvg2-bin imagemagick
+      # apt -y install git-lfs
+      # git lfs install
     
-    steps:
-    - name: Update system repositories, Install Required Libraries and Initialize git-lfs
-      run: |
-        apt update
-        apt -y install git git-lfs zip librsvg2-bin imagemagick
-        git lfs install
-    
-    - name: Checkout Repository
-      uses: actions/checkout@v2
-      with:
-        lfs: true
+  #  - name: Checkout Repository
+  #    uses: actions/checkout@v2
+  #    with:
+  #      lfs: true
 
     - name: Assign variables from project.properties to Env variable
       run: |
@@ -160,7 +161,7 @@ jobs:
         sed -i "s!<<hash>>!Git-${COMMIT}!" *.kicad_pcb
         sed -i "s!<<project_name>>!${{ env.project_name }}!" *.kicad_pcb
         sed -i "s!<<date>>!$(date +'%Y-%m-%d')!" *.kicad_pcb 
-        sed -i "s!<<ID>>!${{ env.ID_prefix }}${{ env.ID }}!" *.kicad_pcb 
+        sed -i "s!<<ID>>!ID: ${{ env.ID_prefix }}${{ env.ID }}!" *.kicad_pcb 
     - name: Retrieve results kicad_pcb with the git hash
       uses: actions/upload-artifact@v1
       with:
@@ -168,9 +169,9 @@ jobs:
         path: 'design.kicad_pcb'
     - name: Run PCB stuff
       run: |
-        [ -f design.kicad_pcb ] && kiplot  -d Fabrication -s all print_front print_back gerbers gerber_drills pcb_top_b pcb_bottom_b step
+        [ -f design.kicad_pcb ] && kiplot  -d Fabrication_temp -s all print_front print_back pcb_top_b pcb_bottom_b step
     - name: Retrieve results
       uses: actions/upload-artifact@v1
       with:
         name: FabPCB_Output
-        path: 'Fabrication'
+        path: 'Fabrication_temp'
