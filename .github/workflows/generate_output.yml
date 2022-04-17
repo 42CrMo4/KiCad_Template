@@ -4,7 +4,7 @@ name: CI output design
 # events but only for the master branch
 on:
   push:
-    branches: [ main ]
+    # branches: [ main ]
     paths:
       - '*.kicad_sch'
       - '*.kicad_pcb'
@@ -12,7 +12,7 @@ on:
       - '.github/workflows/generate_output.yml'
       - 'design.kiplot.yml'
   pull_request:
-    branches: [ main ]
+    # branches: [ main ]
     paths:
       - '*.kicad_sch'
       - '*.kicad_pcb'
