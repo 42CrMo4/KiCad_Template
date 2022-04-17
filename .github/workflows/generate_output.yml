@@ -116,9 +116,19 @@ jobs:
       run: |
         [ -f *.kicad_pcb ] && kiplot  -d Fabrication_temp -s all print_front print_back pcb_top_b pcb_bottom_b
         cd Fabrication_temp
-        # ls * | xargs -I{} mv {} {}_backup
-        for file in *; do mv -v ${file} new_${file}; done
-
+        # for file in ./*; do mv -v ${file} new_${file}; done
+        for i in $(ls); do                        # runs through the 'items' in this dir                                                                                       
+          if [ -d $i ]; then                      # if this is a dir                                                                                                           
+            fname=${i##*/}                 # pick up the dir name which will be used as prefix                                                                                
+            echo $fname
+            cd $i                                    # move into the dir                                                                                                      
+            for z in *; do               # loop over files                                                                                                                    
+              echo $z
+              mv $z ${fname}_${z}         # put the prefix to the file.                                                                                                       
+            done
+            cd ..
+            fi
+          done
 
     - name: Retrieve results
       uses: actions/upload-artifact@v3
