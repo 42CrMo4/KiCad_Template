@@ -166,7 +166,7 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: ${{ env.project_name }}_Kicad_raw
-        path: '${{ env.project_name }}.kicad_sch'
+        path: '${{ env.project_name }}.kicad_pcb'
     - name: Run PCB stuff
       run: |
         [ -f design.kicad_pcb ] && kiplot  -d Fabrication_temp -s all print_front print_back pcb_top_b pcb_bottom_b step
