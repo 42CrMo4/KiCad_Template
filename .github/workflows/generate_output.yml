@@ -74,9 +74,7 @@ jobs:
 
     - name: Assign variables from project.properties to Env variable
       run: |
-        export COMMIT=$(git rev-parse --short HEAD)
-        cat project.properties >> $GITHUB_ENV 
-        cat COMMIT >> $GITHUB_ENV 
+        cat project.properties >> $GITHUB_ENV  
     
     - name: Update the Schematic with the git hash
       run: |
@@ -90,7 +88,7 @@ jobs:
     - name: Retrieve results from git hash update
       uses: actions/upload-artifact@v3
       with:
-        name: ${{ env.project_name }}_Kicad_raw_${env.COMMIT}
+        name: ${{ env.project_name }}_Kicad_raw_${COMMIT}
         path: '${{ env.project_name }}.kicad_sch'
 
     - name: Run Schematic and BOM 
@@ -114,7 +112,7 @@ jobs:
     - name: Retrieve results kicad_pcb with the git hash
       uses: actions/upload-artifact@v3
       with:
-        name: ${{ env.project_name }}_Kicad_raw_${env.COMMIT}
+        name: ${{ env.project_name }}_Kicad_raw
         path: '${{ env.project_name }}.kicad_pcb'
     - name: Run PCB stuff
       run: |
@@ -129,7 +127,7 @@ jobs:
     - name: Retrieve results
       uses: actions/upload-artifact@v3
       with:
-        name: ${{ env.project_name }}_Output_${env.COMMIT}
+        name: ${{ env.project_name }}_Output_${COMMIT}
         path: 'Fabrication_temp'
 
     - name: Run STEP
@@ -138,5 +136,5 @@ jobs:
     - name: Retrieve results
       uses: actions/upload-artifact@v3
       with:
-        name: ${{ env.project_name }}_Output_${env.COMMIT}
+        name: ${{ env.project_name }}_Output_STEP_${COMMIT}
         path: 'Fabrication_temp_step'
