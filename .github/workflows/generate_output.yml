@@ -10,7 +10,6 @@ on:
       - '*.kicad_pcb'
       - '*.kiplot.yaml'
       - '.github/workflows/generate_output.yml'
-      - 'design.kiplot.yml'
   pull_request:
     # branches: [ main ]
     paths:
@@ -18,7 +17,6 @@ on:
       - '*.kicad_pcb'
       - '*.kiplot.yaml'
       - '.github/workflows/generate_output.yml'
-      - 'design.kiplot.yml'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
