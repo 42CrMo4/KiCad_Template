@@ -63,7 +63,7 @@ outputs:
     dir: BoM
     options:
       blacklist: 'DNF*'
-      name_format: 'iBoM'
+      output: 'iBoM.html'
 
   - name: 'bom_csv'
     comment: "Bill of Materials in CSV format" 

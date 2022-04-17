@@ -174,7 +174,7 @@ jobs:
         mv Schematic.pdf ${{ env.project_name }}_Schematic.pdf
         mv PCB_Bottom.png ${{ env.project_name }}_PCB_Bottom.png
         mv PCB_Top.png ${{ env.project_name }}_PCB_Top.png
-        mv BoM/iBoM BoM/${{ env.project_name }}_iBoM
+        mv BoM/iBoM.html BoM/${{ env.project_name }}_iBoM.html
     - name: Retrieve results
       uses: actions/upload-artifact@v1
       with:
