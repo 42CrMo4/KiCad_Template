@@ -33,15 +33,15 @@ outputs:
     comment: "Print schematic (PDF)"
     type: pdf_sch_print
     dir: .
-     options:
-       output: Schematic.pdf
+    options:
+      output: Schematic.pdf
 
   - name: 'print_front'
     comment: "Print F.Cu+F.SilkS"
     type: pdf_pcb_print
     dir: .
     options:
-       output_name: PCB_Top.pdf
+      output_name: PCB_Top.pdf
     output_id: PCB_Top
     layers:
       - layer: F.Cu
