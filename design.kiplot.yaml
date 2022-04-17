@@ -63,7 +63,7 @@ outputs:
     dir: BoM
     options:
       blacklist: 'DNF*'
-      name_format: '%f_%r_iBoM'
+      name_format: 'iBoM'
 
   - name: 'bom_csv'
     comment: "Bill of Materials in CSV format" 
@@ -172,6 +172,7 @@ outputs:
       style: set-blue-enig
       show_components: none
       dpi: 600
+      output_name: PCB_Top
 
   - name: pcb_bottom_b
     comment: "PCB render bottom blue "
@@ -183,6 +184,7 @@ outputs:
       bottom: True
       show_components: none
       dpi: 600
+      output_name: PCB_Bottom
 
   - name: step
     comment: "Generate 3D model (STEP)"
