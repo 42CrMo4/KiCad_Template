@@ -169,9 +169,18 @@ jobs:
         path: '${{ env.project_name }}.kicad_pcb'
     - name: Run PCB stuff
       run: |
-        [ -f design.kicad_pcb ] && kiplot  -d Fabrication_temp -s all print_front print_back pcb_top_b pcb_bottom_b step
+        [ -f design.kicad_pcb ] && kiplot  -d Fabrication_temp -s all print_front print_back pcb_top_b pcb_bottom_b
     - name: Retrieve results
       uses: actions/upload-artifact@v1
       with:
         name: ${{ env.project_name }}_Output
         path: 'Fabrication_temp'
+
+    - name: Run PCB stuff
+      run: |
+        [ -f design.kicad_pcb ] && kiplot  -d Fabrication_temp_step -s all step
+    - name: Retrieve results
+      uses: actions/upload-artifact@v1
+      with:
+        name: ${{ env.project_name }}_Output_STEP
+        path: 'Fabrication_temp_step'
