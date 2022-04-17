@@ -32,24 +32,24 @@ jobs:
 
     - name: Run ERC
       run: |
-        [ -f *.kicad_sch ] && kiplot  -d Fabrication_temp -s update_xml,run_drc -i
+        [ -f *.kicad_sch ] && kiplot  -d Fabrication_temp -s update_xml,run_drc -i,run_erc -i
     #- name: Retrieve results
     #  uses: actions/upload-artifact@v3
     #  with:
     #    name: ERC-DRC_Output
     #    path: 'Fabrication_temp'
 
-  DRC:
-    runs-on: ubuntu-latest
-    container: setsoft/kicad_auto:dev_k6
-    needs: ERC
+  # DRC:
+  #   runs-on: ubuntu-latest
+  #   container: setsoft/kicad_auto:dev_k6
+  #   needs: ERC
 
-    steps:
-    - uses: actions/checkout@v2
+  #   steps:
+  #   - uses: actions/checkout@v2
 
-    - name: Run DRC
-      run: |
-        [ -f *.kicad_pcb ] && kiplot  -d Fabrication_temp -s update_xml,run_erc -i
+  #   - name: Run DRC
+  #     run: |
+  #       [ -f *.kicad_pcb ] && kiplot  -d Fabrication_temp -s update_xml,run_erc -i
     #- name: Retrieve results
     #  uses: actions/upload-artifact@v3
     #  with:
