@@ -86,7 +86,10 @@ jobs:
         sed -i "s!<<ID>>!${{ env.ID_prefix }}${{ env.ID }}!" *.kicad_sch
         mv *.kicad_sch ${{ env.project_name }}.kicad_sch
     - name: Retrieve results from git hash update
-      uses: actions/upload-artifact@v1
+      run: |
+        export COMMIT=$(git rev-parse --short HEAD)
+        echo "COMMIT = ${COMMIT}"
+      uses: actions/upload-artifact@v3
       with:
         name: ${{ env.project_name }}_Kicad_raw_${COMMIT}
         path: '${{ env.project_name }}.kicad_sch'
@@ -110,9 +113,12 @@ jobs:
         sed -i "s!<<ID>>!ID: ${{ env.ID_prefix }}${{ env.ID }}!" *.kicad_pcb 
         mv *.kicad_pcb ${{ env.project_name }}.kicad_pcb
     - name: Retrieve results kicad_pcb with the git hash
+      run: |
+        export COMMIT=$(git rev-parse --short HEAD)
+        echo "COMMIT = ${COMMIT}"
       uses: actions/upload-artifact@v3
       with:
-        name: ${{ env.project_name }}_Kicad_raw
+        name: ${{ env.project_name }}_Kicad_raw_${COMMIT}
         path: '${{ env.project_name }}.kicad_pcb'
     - name: Run PCB stuff
       run: |
@@ -125,6 +131,9 @@ jobs:
         mv *iBoM.* BoM/
 
     - name: Retrieve results
+      run: |
+        export COMMIT=$(git rev-parse --short HEAD)
+        echo "COMMIT = ${COMMIT}"
       uses: actions/upload-artifact@v3
       with:
         name: ${{ env.project_name }}_Output_${COMMIT}
@@ -134,6 +143,9 @@ jobs:
       run: |
         [ -f *.kicad_pcb ] && kiplot  -d Fabrication_temp_step -s all step
     - name: Retrieve results
+      run: |
+        export COMMIT=$(git rev-parse --short HEAD)
+        echo "COMMIT = ${COMMIT}"
       uses: actions/upload-artifact@v3
       with:
         name: ${{ env.project_name }}_Output_STEP_${COMMIT}
