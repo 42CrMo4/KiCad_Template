@@ -106,9 +106,9 @@ jobs:
         sed -i "s!<<project_name>>!${{ env.project_name }}!" *.kicad_pcb
         sed -i "s!<<date>>!$(date +'%Y-%m-%d')!" *.kicad_pcb 
         sed -i "s!<<ID>>!ID: ${{ env.ID_prefix }}${{ env.ID }}!" *.kicad_pcb 
-        cp *.kicad_pcb ${{ env.project_name }}.kicad_pcb
+        mv *.kicad_pcb ${{ env.project_name }}.kicad_pcb
     - name: Retrieve results kicad_pcb with the git hash
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v3
       with:
         name: ${{ env.project_name }}_Kicad_raw
         path: '${{ env.project_name }}.kicad_pcb'
