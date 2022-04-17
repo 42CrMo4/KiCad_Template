@@ -41,7 +41,7 @@ outputs:
     type: pdf_pcb_print
     dir: .
     options:
-      output_name: PCB_Top.pdf
+      output_name: PCB_Top_Sheet.pdf
     output_id: PCB_Top
     layers:
       - layer: F.Cu
@@ -52,7 +52,7 @@ outputs:
     type: pdf_pcb_print
     dir: .
     options:
-      output_name: PCB_Back.pdf
+      output_name: PCB_Back_Sheet.pdf
     layers:
       - layer: B.Cu
       - layer: B.SilkS
