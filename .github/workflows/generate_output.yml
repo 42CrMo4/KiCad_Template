@@ -34,7 +34,7 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: ERC-DRC_Output
-        path: Fabrication_temp
+        path: 'Fabrication_temp'
 
   DRC:
     runs-on: ubuntu-latest
@@ -51,7 +51,7 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: ERC-DRC_Output
-        path: Fabrication_temp
+        path: 'Fabrication_temp'
 
   Fabrication:
     name: Fabrication files
