@@ -117,6 +117,8 @@ jobs:
         mv PCB_Bottom.png ${{ env.project_name }}_PCB_Bottom.png
         mv PCB_Top.png ${{ env.project_name }}_PCB_Top.png
         mv BoM/iBoM.html BoM/${{ env.project_name }}_iBoM.html
+        mv PCB_Sheet/PCB_Back_Sheet.pdf PCB_Sheet/${{ env.project_name }}_PCB_Back_Sheet.pdf
+        mv PCB_Sheet/PCB_Top_Sheet.pdf PCB_Sheet/${{ env.project_name }}_PCB_Top_Sheet.pdf
     - name: Retrieve results
       uses: actions/upload-artifact@v1
       with:
