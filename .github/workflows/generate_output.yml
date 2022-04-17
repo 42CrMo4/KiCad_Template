@@ -23,14 +23,14 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  ERC:
+  ERC-DRC:
     runs-on: ubuntu-latest
     container: setsoft/kicad_auto:dev_k6
 
     steps:
     - uses: actions/checkout@v2
 
-    - name: Run ERC
+    - name: Run ERC & DRC
       run: |
         [ -f *.kicad_sch ] && kiplot  -d Fabrication_temp -s update_xml,run_drc -i,run_erc -i
     #- name: Retrieve results
