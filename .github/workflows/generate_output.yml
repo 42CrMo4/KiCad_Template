@@ -170,6 +170,7 @@ jobs:
     - name: Run PCB stuff
       run: |
         [ -f design.kicad_pcb ] && kiplot  -d Fabrication_temp -s all print_front print_back pcb_top_b pcb_bottom_b
+        cd Fabrication_temp
         cp Schematic.pdf ${{ env.project_name }}_Schematic.pdf
     - name: Retrieve results
       uses: actions/upload-artifact@v1
@@ -177,7 +178,7 @@ jobs:
         name: ${{ env.project_name }}_Output
         path: 'Fabrication_temp'
 
-    - name: Run PCB stuff
+    - name: Run STEP
       run: |
         [ -f design.kicad_pcb ] && kiplot  -d Fabrication_temp_step -s all step
     - name: Retrieve results
