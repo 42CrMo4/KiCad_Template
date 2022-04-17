@@ -116,7 +116,7 @@ jobs:
       run: |
         [ -f *.kicad_pcb ] && kiplot  -d Fabrication_temp -s all print_front print_back pcb_top_b pcb_bottom_b
         cd Fabrication_temp
-        find . -name "*" -exec mv {} {}_backup \;
+        find . -name "*" -exec mv {} {}_backup
       # mv Schematic.pdf ${{ env.project_name }}_Schematic.pdf
       # mv PCB_Bottom.png ${{ env.project_name }}_PCB_Bottom.png
         mv PCB_Top.png ${{ env.project_name }}_PCB_Top.png
