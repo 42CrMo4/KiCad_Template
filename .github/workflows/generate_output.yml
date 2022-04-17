@@ -83,7 +83,7 @@ jobs:
         sed -i "s!<<project_name>>!${{ env.project_name }}!" *.kicad_sch
         sed -i "s!<<date>>!$(date +'%Y-%m-%d')!" *.kicad_sch 
         sed -i "s!<<ID>>!${{ env.ID_prefix }}${{ env.ID }}!" *.kicad_sch
-        cp design.kicad_sch ${{ env.project_name }}.kicad_sch
+        mv design.kicad_sch ${{ env.project_name }}.kicad_sch
     - name: Retrieve results from git hash update
       uses: actions/upload-artifact@v1
       with:
@@ -92,7 +92,7 @@ jobs:
 
     - name: Run Schematic and BOM 
       run: |
-        [ -f design.kicad_sch ] && kiplot -d Fabrication_temp -s all  print_sch interactive_bom
+        [ -f *.kicad_sch ] && kiplot  -d Fabrication_temp -s all  print_sch interactive_bom
 
     - name: Assign variables from project.properties to Env variable
       run: |
