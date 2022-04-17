@@ -39,7 +39,7 @@ outputs:
   - name: 'print_front'
     comment: "Print F.Cu+F.SilkS"
     type: pdf_pcb_print
-    dir: PCB_Sheet
+    dir: .
     options:
       output: PCB_Top_Sheet.pdf
     output_id: PCB_Top
@@ -50,7 +50,7 @@ outputs:
   - name: 'print_back'
     comment: "Print B.Cu+B.SilkS"
     type: pdf_pcb_print
-    dir: PCB_Sheet
+    dir: .
     options:
       output: PCB_Back_Sheet.pdf
     layers:
@@ -60,7 +60,7 @@ outputs:
   - name: 'interactive_bom'
     comment: "Interactive Bill of Materials (HTML)"
     type: ibom
-    dir: BoM
+    dir: .
     options:
       blacklist: 'DNF*'
       output: 'iBoM.html'
