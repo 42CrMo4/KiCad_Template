@@ -63,7 +63,7 @@ jobs:
     # needs: ERC
 
     steps:
-    - name: Update system repositories, Install Required Libraries and Initialize git-lfs
+    - name: Update system repositories, Install Required Libraries
       run: |
         apt update
         apt -y install git
