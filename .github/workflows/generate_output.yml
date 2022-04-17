@@ -116,7 +116,9 @@ jobs:
       run: |
         [ -f *.kicad_pcb ] && kiplot  -d Fabrication_temp -s all print_front print_back pcb_top_b pcb_bottom_b
         cd Fabrication_temp
-        ls * | xargs -I{} mv {} {}_backup
+        # ls * | xargs -I{} mv {} {}_backup
+        for file in *; do mv -v ${file} new_${file}; done
+
 
     - name: Retrieve results
       uses: actions/upload-artifact@v3
