@@ -1,5 +1,8 @@
 name: CI output design
 
+# ToDos:
+# - artifact upload ERC/DRC
+
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
@@ -30,11 +33,11 @@ jobs:
     - name: Run ERC
       run: |
         [ -f *.kicad_sch ] && kiplot  -d Fabrication_temp -s update_xml,run_drc -i
-    - name: Retrieve results
-      uses: actions/upload-artifact@v3
-      with:
-        name: ERC-DRC_Output
-        path: 'Fabrication_temp'
+    #- name: Retrieve results
+    #  uses: actions/upload-artifact@v3
+    #  with:
+    #    name: ERC-DRC_Output
+    #    path: 'Fabrication_temp'
 
   DRC:
     runs-on: ubuntu-latest
@@ -47,11 +50,11 @@ jobs:
     - name: Run DRC
       run: |
         [ -f *.kicad_pcb ] && kiplot  -d Fabrication_temp -s update_xml,run_erc -i
-    - name: Retrieve results
-      uses: actions/upload-artifact@v3
-      with:
-        name: ERC-DRC_Output
-        path: 'Fabrication_temp'
+    #- name: Retrieve results
+    #  uses: actions/upload-artifact@v3
+    #  with:
+    #    name: ERC-DRC_Output
+    #    path: 'Fabrication_temp'
 
   Fabrication:
     name: Fabrication files
