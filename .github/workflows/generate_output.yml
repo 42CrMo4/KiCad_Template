@@ -88,7 +88,7 @@ jobs:
     - name: Retrieve results from git hash update
       uses: actions/upload-artifact@v1
       with:
-        name: ${{ env.project_name }}_Kicad_raw
+        name: ${{ env.project_name }}_Kicad_raw_${COMMIT}
         path: '${{ env.project_name }}.kicad_sch'
 
     - name: Run Schematic and BOM 
@@ -127,7 +127,7 @@ jobs:
     - name: Retrieve results
       uses: actions/upload-artifact@v3
       with:
-        name: ${{ env.project_name }}_Output
+        name: ${{ env.project_name }}_Output_${COMMIT}
         path: 'Fabrication_temp'
 
     - name: Run STEP
@@ -136,5 +136,5 @@ jobs:
     - name: Retrieve results
       uses: actions/upload-artifact@v3
       with:
-        name: ${{ env.project_name }}_Output_STEP
+        name: ${{ env.project_name }}_Output_STEP_${COMMIT}
         path: 'Fabrication_temp_step'
