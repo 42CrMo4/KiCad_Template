@@ -31,7 +31,7 @@ jobs:
       run: |
         [ -f *.kicad_sch ] && kiplot  -d Fabrication_temp -s update_xml,run_drc -i
     - name: Retrieve results
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v3
       with:
         name: ERC-DRC_Output
         path: 'Fabrication_temp'
@@ -48,7 +48,7 @@ jobs:
       run: |
         [ -f *.kicad_pcb ] && kiplot  -d Fabrication_temp -s update_xml,run_erc -i
     - name: Retrieve results
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v3
       with:
         name: ERC-DRC_Output
         path: 'Fabrication_temp'
@@ -120,7 +120,7 @@ jobs:
         mv PCB_Sheet/PCB_Back_Sheet.pdf PCB_Sheet/${{ env.project_name }}_PCB_Back_Sheet.pdf
         mv PCB_Sheet/PCB_Top_Sheet.pdf PCB_Sheet/${{ env.project_name }}_PCB_Top_Sheet.pdf
     - name: Retrieve results
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v3
       with:
         name: ${{ env.project_name }}_Output
         path: 'Fabrication_temp'
@@ -129,7 +129,7 @@ jobs:
       run: |
         [ -f design.kicad_pcb ] && kiplot  -d Fabrication_temp_step -s all step
     - name: Retrieve results
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v3
       with:
         name: ${{ env.project_name }}_Output_STEP
         path: 'Fabrication_temp_step'
