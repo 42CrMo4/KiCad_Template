@@ -39,7 +39,7 @@ outputs:
   - name: 'print_front'
     comment: "Print F.Cu+F.SilkS"
     type: pdf_pcb_print
-    dir: .
+    dir: PCB_Sheet
     options:
       output_name: PCB_Top_Sheet.pdf
     output_id: PCB_Top
@@ -50,7 +50,7 @@ outputs:
   - name: 'print_back'
     comment: "Print B.Cu+B.SilkS"
     type: pdf_pcb_print
-    dir: .
+    dir: PCB_Sheet
     options:
       output_name: PCB_Back_Sheet.pdf
     layers:
@@ -166,7 +166,7 @@ outputs:
   - name: pcb_top_b
     comment: "PCB render top blue "
     type: pcbdraw
-    dir: PCB
+    #dir: PCB
     options:
       format: png
       style: set-blue-enig
@@ -176,7 +176,7 @@ outputs:
   - name: pcb_bottom_b
     comment: "PCB render bottom blue "
     type: pcbdraw
-    dir: PCB
+    #dir: PCB
     options:
       format: png
       style: set-blue-enig
