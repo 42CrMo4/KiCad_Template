@@ -83,7 +83,7 @@ jobs:
     - name: Retrieve results from git hash update
       uses: actions/upload-artifact@v1
       with:
-        name: ${{ env.project_name }}_Schematic_raw
+        name: ${{ env.project_name }}_Kicad_raw
         path: 'design.kicad_sch'
 
     - name: Run Schematic and BOM 
@@ -163,7 +163,7 @@ jobs:
     - name: Retrieve results kicad_pcb with the git hash
       uses: actions/upload-artifact@v1
       with:
-        name: ${{ env.project_name }}_Kicad_PCB_raw
+        name: ${{ env.project_name }}_Kicad_raw
         path: 'design.kicad_pcb'
     - name: Run PCB stuff
       run: |
