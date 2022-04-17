@@ -173,5 +173,5 @@ jobs:
     - name: Retrieve results
       uses: actions/upload-artifact@v1
       with:
-        name: FabPCB_Output
+        name: ${{ env.project_name }}_Output
         path: 'Fabrication_temp'
