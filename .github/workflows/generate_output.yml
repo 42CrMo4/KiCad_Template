@@ -32,7 +32,8 @@ jobs:
 
     - name: Run ERC & DRC
       run: |
-        [ -f *.kicad_sch ] && kiplot  -d Fabrication_temp -s update_xml,run_drc -i,run_erc -i
+        [ -f *.kicad_sch ] && kiplot  -d Fabrication_temp -s update_xml,run_drc -i
+        [ -f *.kicad_pcb ] && kiplot  -d Fabrication_temp -s update_xml,run_erc -i
     #- name: Retrieve results
     #  uses: actions/upload-artifact@v3
     #  with:
