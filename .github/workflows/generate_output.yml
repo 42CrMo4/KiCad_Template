@@ -92,7 +92,7 @@ jobs:
 
     - name: Run Schematic and BOM 
       run: |
-        [ -f *.kicad_sch ] && kiplot  -d Fabrication_temp -s all  print_sch interactive_bom
+        [ -f *.kicad_sch ] && kiplot -d Fabrication_temp -s all  print_sch interactive_bom
 
     - name: Assign variables from project.properties to Env variable
       run: |
