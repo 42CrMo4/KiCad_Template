@@ -41,7 +41,7 @@ outputs:
     type: pdf_pcb_print
     dir: PCB_Sheet
     options:
-      output_name: PCB_Top_Sheet.pdf
+      output: PCB_Top_Sheet.pdf
     output_id: PCB_Top
     layers:
       - layer: F.Cu
@@ -52,7 +52,7 @@ outputs:
     type: pdf_pcb_print
     dir: PCB_Sheet
     options:
-      output_name: PCB_Back_Sheet.pdf
+      output: PCB_Back_Sheet.pdf
     layers:
       - layer: B.Cu
       - layer: B.SilkS
@@ -172,7 +172,7 @@ outputs:
       style: set-blue-enig
       show_components: none
       dpi: 600
-      output_name: PCB_Top
+      output: PCB_Top
 
   - name: pcb_bottom_b
     comment: "PCB render bottom blue "
@@ -184,7 +184,7 @@ outputs:
       bottom: True
       show_components: none
       dpi: 600
-      output_name: PCB_Bottom
+      output: PCB_Bottom
 
   - name: step
     comment: "Generate 3D model (STEP)"
