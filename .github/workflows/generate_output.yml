@@ -116,19 +116,7 @@ jobs:
       run: |
         [ -f *.kicad_pcb ] && kiplot  -d Fabrication_temp -s all print_front print_back pcb_top_b pcb_bottom_b
         cd Fabrication_temp
-        # for file in ./*; do mv -v ${file} new_${file}; done
-        for i in $(ls); do                        # runs through the 'items' in this dir                                                                                       
-          if [ -d $i ]; then                      # if this is a dir                                                                                                           
-            cd $i                                 # move into the dir                                                                                                      
-            for z in *; do                        # loop over files                                                                                                                    
-              echo $z
-              mv $z ${{ env.project_name }}_${z}                 # put the prefix to the file.                                                                                                       
-            done
-            cd ..
-          else
-            mv $z ${{ env.project_name }}_${z}
-            fi
-          done
+        for file in *; do mv -v ${file} ${{ env.project_name }}_${file}; done
 
     - name: Retrieve results
       uses: actions/upload-artifact@v3
