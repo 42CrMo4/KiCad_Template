@@ -86,6 +86,7 @@ jobs:
         sed -i "s!<<date>>!$(date +'%Y-%m-%d')!" *.kicad_pcb 
         sed -i "s!<<version>>!${{ github.ref_name }}!" *.kicad_pcb 
         sed -i "s!<<ID>>!ID: ${{ env.ID_prefix }}${{ env.ID }}!" *.kicad_pcb
+        sed -i "s!<<website_link>>!${{ env.Website_link }}/${{ env.ID_prefix }}/${{ env.ID }}!" *.kicad_pcb 
         mv *.kicad_pcb ${{ env.project_name }}_${{ github.ref_name }}.kicad_pcb
 
     - name: Update the release note with the RepoName / Tag
