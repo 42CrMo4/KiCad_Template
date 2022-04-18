@@ -87,7 +87,7 @@ outputs:
   - name: 'gerbers'
     comment: "Gerbers for the board house"
     type: gerber
-    dir: .
+    dir: Gerber
     options:
       # generic layer options
       exclude_edge_layer: true
@@ -138,7 +138,7 @@ outputs:
   - name: gerber_drills
     comment: "Gerber drill files"
     type: gerb_drill
-    dir: .
+    dir: Gerber
     options:
       use_aux_axis_as_origin: false
 
