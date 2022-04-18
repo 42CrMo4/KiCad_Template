@@ -41,7 +41,7 @@ outputs:
     type: pdf_pcb_print
     dir: .
     options:
-      output: PCB_Top_Sheet.pdf
+      output: PCB_Sheet_Top.pdf
     output_id: PCB_Top
     layers:
       - layer: F.Cu
@@ -52,7 +52,7 @@ outputs:
     type: pdf_pcb_print
     dir: .
     options:
-      output: PCB_Back_Sheet.pdf
+      output: PCB_Sheet_Back.pdf
     layers:
       - layer: B.Cu
       - layer: B.SilkS
@@ -184,7 +184,7 @@ outputs:
       bottom: True
       show_components: none
       dpi: 600
-      output: PCB_Bottom.png
+      output: PCB_Back.png
 
   - name: step
     comment: "Generate 3D model (STEP)"
