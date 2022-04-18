@@ -121,6 +121,9 @@ jobs:
     - name: Run PCB stuff
       run: |
         [ -f *.kicad_pcb ] && kiplot  -d Fabrication_temp -s all pcb_top_b pcb_bottom_b #print_front print_back
+
+    - name: Renaming Files
+      run: |
         cd Fabrication_temp
         for file in *; do mv -v ${file} ${{ env.project_name }}_${file}; done #https://unix.stackexchange.com/a/389516
         # mkdir PCB_Sheet
