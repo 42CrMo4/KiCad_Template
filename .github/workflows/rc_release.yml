@@ -109,7 +109,7 @@ jobs:
     - name: Renaming Files
       run: |
         cd Fabrication_temp
-        for file in *; do mv -v ${file} ${{ env.project_name }}_${file}; done #https://unix.stackexchange.com/a/389516
+        for file in *; do mv -v ${file} ${{ env.project_name }}_${file}__${{ github.ref_name }}; done #https://unix.stackexchange.com/a/389516
 
     - uses: vimtor/action-zip@v1
       with:
@@ -119,7 +119,7 @@ jobs:
 
     - uses: ncipollo/release-action@v1
       with:
-        artifacts: "Fabrication_temp/*, Gerber/* " # Fabrication_temp/BoM/*ibom*, *.kicad_sch, Gerber.zip, *.kicad_pcb, Fabrication_temp/3D/*.step, Fabrication_temp/PCB/blue/*"
+        artifacts: "Fabrication_temp/*, *.kicad_sch, *.kicad_pcb, Gerber/* " # Fabrication_temp/BoM/*ibom*, *.kicad_sch, Gerber.zip, *.kicad_pcb, Fabrication_temp/3D/*.step, Fabrication_temp/PCB/blue/*"
         bodyFile: "docs/release_note.md"
         prerelease: true
         token: ${{ secrets.GITHUB_TOKEN }}
