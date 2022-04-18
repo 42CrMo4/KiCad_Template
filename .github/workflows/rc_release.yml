@@ -110,7 +110,7 @@ jobs:
     - name: Renaming Files
       run: |
         cd Fabrication_temp
-        for file in *; do mv -v ${file} ${{ env.project_name }}_${file}__${{ github.ref_name }}; done #https://unix.stackexchange.com/a/389516
+        for file in *; do mv -v ${file} ${{ env.project_name }}_${{ github.ref_name }}_${file}; done #https://unix.stackexchange.com/a/389516
 
     - uses: vimtor/action-zip@v1
       with:
