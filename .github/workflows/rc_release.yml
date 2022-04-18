@@ -97,11 +97,11 @@ jobs:
       run: |
         [ -f design.kicad_sch ] && kiplot -d Fabrication_temp -s all  print_sch interactive_bom 
 
-    - name: Run PCB stuff
+    - name: Run PCB
       run: |
         [ -f design.kicad_pcb ] && kiplot  -d Fabrication_temp -s all print_front print_back pcb_top_b pcb_bottom_b step
 
-    - name: Run PCB stuff
+    - name: Run Gerber
       run: |
         [ -f design.kicad_pcb ] && kiplot  -d Gerber -s all gerbers gerber_drills
 
