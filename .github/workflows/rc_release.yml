@@ -94,6 +94,7 @@ jobs:
         sed -i "s!<<repo_name>>!${{ github.repository }}!" docs/release_note.md
         sed -i "s!<<tag>>!${{ github.ref_name }}!" docs/release_note.md
         sed -i "s!<<project_name>>!${{ env.project_name }}!" docs/release_note.md
+        sed -i "s!<<version>>!${{ github.ref_name }}!" docs/release_note.md
 
     - name: Run Schematic and BOM 
       run: |
@@ -116,7 +117,7 @@ jobs:
       with:
         files: Gerber/
         recursive: false
-        dest: Gerber_${{ github.ref_name }}.zip
+        dest: ${{ env.project_name }}_${{ github.ref_name }}_Gerber.zip
 
     - uses: ncipollo/release-action@v1
       with:
