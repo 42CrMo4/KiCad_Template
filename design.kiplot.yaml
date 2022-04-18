@@ -189,7 +189,7 @@ outputs:
   - name: step
     comment: "Generate 3D model (STEP)"
     type: step
-    dir: 3D
+    dir: .
     options:
       metric_units: true
       download: true
