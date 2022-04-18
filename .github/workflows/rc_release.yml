@@ -121,7 +121,7 @@ jobs:
 
     - uses: ncipollo/release-action@v1
       with:
-        artifacts: "Fabrication_temp/*, *.kicad_sch, *.kicad_pcb, Gerber/Gerber/* " # Fabrication_temp/BoM/*ibom*, *.kicad_sch, Gerber.zip, *.kicad_pcb, Fabrication_temp/3D/*.step, Fabrication_temp/PCB/blue/*"
+        artifacts: "Fabrication_temp/*, *.kicad_sch, *.kicad_pcb, Gerber/*Gerber.zip " # Fabrication_temp/BoM/*ibom*, *.kicad_sch, Gerber.zip, *.kicad_pcb, Fabrication_temp/3D/*.step, Fabrication_temp/PCB/blue/*"
         bodyFile: "docs/release_note.md"
         prerelease: true
         token: ${{ secrets.GITHUB_TOKEN }}
