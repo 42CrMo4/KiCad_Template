@@ -45,8 +45,8 @@ jobs:
     #     name: DRC_Output
     #     path: Fabrication_temp
     
-  FabSch:
-    name: Fabrication_temp files
+  Fabrication:
+    name: Fabrication files
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -54,7 +54,7 @@ jobs:
     needs: DRC
 
     steps:
-    - name: Update system repositories, Install Required Libraries and Initialize git-lfs
+    - name: Update system repositories, Install Required Libraries
       run: |
         apt update
         apt -y install git
