@@ -117,7 +117,7 @@ jobs:
       with:
         files: Gerber/
         recursive: false
-        dest: Gerber.zip
+        dest: ${{ env.project_name }}_${{ github.ref_name }}_Gerber.zip
 
     - uses: ncipollo/release-action@v1
       with:
