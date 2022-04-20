@@ -74,7 +74,8 @@ jobs:
         sed -i "s!<<project_name>>!${{ env.project_name }}!" *.kicad_sch
         sed -i "s!<<date>>!$(date +'%Y-%m-%d')!" *.kicad_sch 
         sed -i "s!<<version>>!${{ github.ref_name }}!" *.kicad_sch 
-        sed -i "s!<<ID>>!ID: ${{ env.ID_prefix }}${{ env.ID }}!" *.kicad_sch 
+        sed -i "s!<<ID>>!ID: ${{ env.ID_prefix }}${{ env.ID }}!" *.kicad_sch
+        mv *.kicad_sch ${{ env.project_name }}_${{ github.ref_name }}.kicad_sch
 
     - name: Update the PCBs with the git hash
       run: |
@@ -84,12 +85,16 @@ jobs:
         sed -i "s!<<project_name>>!${{ env.project_name }}!" *.kicad_pcb
         sed -i "s!<<date>>!$(date +'%Y-%m-%d')!" *.kicad_pcb 
         sed -i "s!<<version>>!${{ github.ref_name }}!" *.kicad_pcb 
-        sed -i "s!<<ID>>!ID: ${{ env.ID_prefix }}${{ env.ID }}!" *.kicad_pcb 
+        sed -i "s!<<ID>>!ID: ${{ env.ID_prefix }}${{ env.ID }}!" *.kicad_pcb
+        sed -i "s!<<website_link>>!${{ env.Website_link }}/${{ env.ID_prefix }}/${{ env.ID }}!" *.kicad_pcb 
+        mv *.kicad_pcb ${{ env.project_name }}_${{ github.ref_name }}.kicad_pcb
 
     - name: Update the release note with the RepoName / Tag
       run: |
         sed -i "s!<<repo_name>>!${{ github.repository }}!" docs/release_note.md
         sed -i "s!<<tag>>!${{ github.ref_name }}!" docs/release_note.md
+        sed -i "s!<<project_name>>!${{ env.project_name }}!" docs/release_note.md
+        sed -i "s!<<version>>!${{ github.ref_name }}!" docs/release_note.md
 
     - name: Run Schematic and BOM 
       run: |
