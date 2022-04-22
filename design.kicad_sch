@@ -5,7 +5,7 @@
   (paper "A4")
 
   (title_block
-    (title "<<project_name>>")
+    (title "<<ID>>_<<project_name>>")
     (date "<<date>>")
     (rev "<<version>>")
     (comment 4 "<<hash>>")
