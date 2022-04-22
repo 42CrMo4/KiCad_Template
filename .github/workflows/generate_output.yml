@@ -110,7 +110,7 @@ jobs:
         sed -i "s!<<website_link>>!${{ env.Website_link }}/${{ env.ID_prefix }}/${{ env.ID }}!" *.kicad_pcb 
         sed -i "s!<<ID>>!ID: ${{ env.ID_prefix }}${{ env.ID }}!" *.kicad_pcb 
         mv *.kicad_pcb ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}.kicad_pcb
-        
+
     - name: Retrieve results kicad_pcb with the git hash
       uses: actions/upload-artifact@v3
       with:
@@ -140,7 +140,8 @@ jobs:
       run: |
         [ -f *.kicad_pcb ] && kiplot  -d Fabrication_temp_step -s all step
         cd Fabrication_temp_step
-        mv -v ${file} ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${file}
+        mv *.step ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}.step
+        
     - name: Retrieve results
       uses: actions/upload-artifact@v3
       with:
