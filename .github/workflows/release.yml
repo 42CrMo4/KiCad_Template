@@ -3,10 +3,12 @@ name: Release Design
 # Controls when the action will run. Triggers the workflow on push or pull request
 on:
   push:
+    branches: [ main ]
     tags:
       - 'v[0-9]+.[0-9]+'
 
   pull_request:
+    branches: [ main ]
     tags:
       - 'v[0-9]+.[0-9]+'
 
@@ -149,4 +151,5 @@ jobs:
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
         repository: .
+        branch: main
         commit_message: Archive & Renew release docs
