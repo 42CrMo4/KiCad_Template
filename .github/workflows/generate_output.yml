@@ -137,6 +137,8 @@ jobs:
     - name: Run STEP
       run: |
         [ -f *.kicad_pcb ] && kiplot  -d Fabrication_temp_step -s all step
+        cd Fabrication_temp_step
+        mv -v ${file} ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${file}
     - name: Retrieve results
       uses: actions/upload-artifact@v3
       with:
