@@ -98,7 +98,7 @@ jobs:
         sed -i "s!<<tag>>!${{ github.ref_name }}!" docs/release_note.md
         sed -i "s!<<project_name>>!${{ env.project_name }}!" docs/release_note.md
         sed -i "s!<<version>>!${{ github.ref_name }}!" docs/release_note.md
-        sed -i "s!<<ID>>!ID: ${{ env.ID_prefix }}${{ env.ID }}!" docs/release_note.md
+        sed -i "s!<<ID>>!${{ env.ID_prefix }}${{ env.ID }}!" docs/release_note.md
 
     - name: Run Schematic and BOM 
       run: |
