@@ -135,6 +135,9 @@ jobs:
     needs: FabSch
     steps:
 
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
     - name: Renaming Release note & checklist + copy the template
       run: |
         cd docs
