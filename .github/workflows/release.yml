@@ -143,7 +143,7 @@ jobs:
         cd docs
         mv release_note.md release_note_${{ github.ref_name }}.md
         mv release_checklist.md release_checklist_${{ github.ref_name }}.md
-        cp release_template/release_note.md.md release_note.md 
+        cp release_template/release_note.md release_note.md 
         cp release_template/release_checklist.md release_checklist.md
 
     - uses: stefanzweifel/git-auto-commit-action@v4
