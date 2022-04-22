@@ -86,19 +86,10 @@ jobs:
         sed -i "s!<<date>>!$(date +'%Y-%m-%d')!" *.kicad_sch 
         sed -i "s!<<ID>>!${{ env.ID_prefix }}${{ env.ID }}!" *.kicad_sch
         mv *.kicad_sch ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}.kicad_sch
-    #- name: Retrieve results from git hash update
-    #  uses: actions/upload-artifact@v3
-    #  with:
-    #    name: ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_Kicad_raw
-    #    path: '${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}.kicad_sch'
 
     - name: Run Schematic and BOM 
       run: |
         [ -f *.kicad_sch ] && kiplot  -d Fabrication_temp -s all  print_sch interactive_bom
-
-    #- name: Assign variables from project.properties to Env variable
-    #  run: |
-    #    cat project.properties >> $GITHUB_ENV 
     
     - name: Update the PCBs with the git hash
       run: |
@@ -141,7 +132,7 @@ jobs:
         [ -f *.kicad_pcb ] && kiplot  -d Fabrication_temp_step -s all step
         cd Fabrication_temp_step
         mv *.step ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}.step
-        
+
     - name: Retrieve results
       uses: actions/upload-artifact@v3
       with:
