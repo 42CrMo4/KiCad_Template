@@ -1,5 +1,5 @@
-![PCB Top design](https://github.com/<<repo_name>>/releases/download/<<tag>>/design-top.png)
-![PCB Bottom design](https://github.com/<<repo_name>>/releases/download/<<tag>>/design-bottom.png)
+![PCB Top design](https://github.com/<<repo_name>>/releases/download/<<tag>>/<<project_name>>_<<version>>_PCBdraw_Top.png)
+![PCB Bottom design](https://github.com/<<repo_name>>/releases/download/<<tag>>/<<project_name>>_<<version>>_PCBdraw_Back.png)
 
 first RC release
 
