@@ -19,18 +19,4 @@ Check before releasing and/or submitting to FAB
 - [ ] Power Trace correct width
 - [ ] decoupling capacitors present
 - [ ] component orientation correct (MCU, Diod, etc)
-- [ ] 
-- [ ] 
-- [ ]
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
 
