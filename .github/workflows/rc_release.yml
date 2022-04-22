@@ -77,7 +77,7 @@ jobs:
         sed -i "s!<<project_name>>!${{ env.project_name }}!" *.kicad_sch
         sed -i "s!<<date>>!$(date +'%Y-%m-%d')!" *.kicad_sch 
         sed -i "s!<<version>>!${{ github.ref_name }}!" *.kicad_sch 
-        sed -i "s!<<ID>>!${{ env.ID_prefix }}${{ env.ID }}!" *.kicad_sch
+        sed -i "s!<<ID>>!ID: ${{ env.ID_prefix }}${{ env.ID }}!" *.kicad_sch
         mv *.kicad_sch ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${{ github.ref_name }}.kicad_sch
 
     - name: Update the PCBs with the git hash
@@ -98,7 +98,7 @@ jobs:
         sed -i "s!<<tag>>!${{ github.ref_name }}!" docs/release_note.md
         sed -i "s!<<project_name>>!${{ env.project_name }}!" docs/release_note.md
         sed -i "s!<<version>>!${{ github.ref_name }}!" docs/release_note.md
-        sed -i "s!<<ID>>!ID: ${{ env.ID_prefix }}${{ env.ID }}!" docs/release_note.md
+        sed -i "s!<<ID>>!${{ env.ID_prefix }}${{ env.ID }}!" docs/release_note.md
 
     - name: Run Schematic and BOM 
       run: |
