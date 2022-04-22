@@ -89,8 +89,8 @@ jobs:
     - name: Retrieve results from git hash update
       uses: actions/upload-artifact@v3
       with:
-        name: ${{ env.project_name }}_Kicad_raw
-        path: '${{ env.project_name }}.kicad_sch'
+        name: ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_Kicad_raw
+        path: '${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}.kicad_sch'
 
     - name: Run Schematic and BOM 
       run: |
@@ -113,8 +113,8 @@ jobs:
     - name: Retrieve results kicad_pcb with the git hash
       uses: actions/upload-artifact@v3
       with:
-        name: ${{ env.project_name }}_Kicad_raw
-        path: '${{ env.project_name }}.kicad_pcb'
+        name: ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_Kicad_raw
+        path: '${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}.kicad_pcb'
     - name: Run PCB stuff
       run: |
         [ -f *.kicad_pcb ] && kiplot  -d Fabrication_temp -s all pcb_top_b pcb_bottom_b #print_front print_back
@@ -122,7 +122,7 @@ jobs:
     - name: Renaming Files
       run: |
         cd Fabrication_temp
-        for file in *; do mv -v ${file} ${{ env.project_name }}_${file}; done #https://unix.stackexchange.com/a/389516
+        for file in *; do mv -v ${file} ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${file}; done #https://unix.stackexchange.com/a/389516
         # mkdir PCB_Sheet
         # mv *Sheet.* PCB_Sheet/
         mkdir BoM
@@ -131,7 +131,7 @@ jobs:
     - name: Retrieve results
       uses: actions/upload-artifact@v3
       with:
-        name: ${{ env.project_name }}_Output
+        name: ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_Output
         path: 'Fabrication_temp'
 
     - name: Run STEP
@@ -140,5 +140,5 @@ jobs:
     - name: Retrieve results
       uses: actions/upload-artifact@v3
       with:
-        name: ${{ env.project_name }}_Output_STEP
+        name: ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_Output_STEP
         path: 'Fabrication_temp_step'
