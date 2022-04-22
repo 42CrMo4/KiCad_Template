@@ -128,3 +128,26 @@ jobs:
         artifacts: "Fabrication_temp/*, *.kicad_sch, *.kicad_pcb, *Gerber.zip "
         bodyFile: "docs/release_note.md"
         token: ${{ secrets.GITHUB_TOKEN }}
+
+  Archiv-md:
+    name: Archive & Renew Release Docs
+    runs-on: ubuntu-latest
+    needs: FabSch
+    steps:
+    - name: Update system repositories, Install Required Libraries
+      run: |
+        apt update
+        apt -y install git
+
+    - name: Renaming Release note & checklist + copy the template
+      run: |
+        cd docs
+        mv release_note.md release_note_${{ github.ref_name }}.md
+        mv release_checklist.md release_checklist_${{ github.ref_name }}.md
+        cp release_template/release_note.md.md release_note.md 
+        cp release_template/release_checklist.md release_checklist.md
+
+    - uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        repository: .
+        commit_message: Archive & Renew release docs
