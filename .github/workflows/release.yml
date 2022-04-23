@@ -22,6 +22,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Exit if not on master branch
+      if: endsWith(github.ref, 'main') == false
+      run: exit -1
+
     - name: Run ERC
       run: |
         [ -f *.kicad_sch ] && kiplot  -d Fabrication_temp -s update_xml,run_drc -i
