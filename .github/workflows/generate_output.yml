@@ -98,7 +98,7 @@ jobs:
         sed -i "s!<<project_name>>!${{ env.project_name }}!" *.kicad_pcb
         sed -i "s!<<date>>!$(date +'%Y-%m-%d')!" *.kicad_pcb 
         sed -i "s!<<website_link>>!${{ env.Website_link }}/${{ env.ID_prefix }}/${{ env.ID }}!" *.kicad_pcb 
-        sed -i "s!<<ID>>!ID: ${{ env.ID_prefix }}${{ env.ID }}!" *.kicad_pcb 
+        sed -i "s!<<ID>>!ID:${{ env.ID_prefix }}${{ env.ID }}!" *.kicad_pcb 
 
     - name: Run PCB stuff
       run: |
