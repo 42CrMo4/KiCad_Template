@@ -102,7 +102,7 @@ jobs:
 
     - name: Run PCB stuff
       run: |
-        [ -f *.kicad_pcb ] && kiplot  -d Fabrication_temp -s all pcb_top_b pcb_bottom_b #print_front print_back
+        [ -f *.kicad_pcb ] && kiplot  -d Fabrication_temp -s all pcb_top_b pcb_bottom_b #print_front print_back 3dview
 
     - name: Rename the Schematic and PCB Raw Files
       run: |

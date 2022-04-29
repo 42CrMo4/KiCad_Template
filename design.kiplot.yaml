@@ -195,3 +195,14 @@ outputs:
       metric_units: true
       download: true
       kicad_3d_url: 'https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/master/'
+
+  - name: 3dview
+    comment: "Generate render from 3D model"
+    type: render_3d
+    dir: 3D
+    options:
+      metric_units: true
+      download: true
+      kicad_3d_url: 'https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/master/'
+      orthographic: true
+      zoom: 7
