@@ -199,7 +199,7 @@ outputs:
   - name: 3dview
     comment: "Generate render from 3D model"
     type: render_3d
-    dir: 3D
+    dir: .
     options:
       metric_units: true
       download: true
