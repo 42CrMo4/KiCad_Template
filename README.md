@@ -12,6 +12,10 @@ This is a template repo for KiCAD v6 projects with
 * ~Rename artefacts with project name and date?~
 * Add diffrent PCB manufactures output via kibot
 
+## Usage
+
+setting -> action -> general -> Workflow permissions -> Read and write permissions
+
 ## Description. 
 
 |     Font      |     Back      |
