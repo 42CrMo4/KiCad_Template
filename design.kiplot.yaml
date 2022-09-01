@@ -228,7 +228,7 @@ outputs:
     type: diff
     layers: ['F.Cu', 'In1.Cu']
     options:
-      old: KICAD_TEMPLATE_LAST-1
+      old: v0.34
       old_type: git
       new: HEAD
       new_type: git
