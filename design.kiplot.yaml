@@ -222,3 +222,15 @@ outputs:
       old_type: git
       pcb: true
       threshold: 40
+
+  - name: 'diff_pcb'
+    comment: "PCB difference with git HEAD"
+    type: diff
+    layers: ['F.Cu', 'In1.Cu']
+    options:
+      old: KICAD_TEMPLATE_LAST-1
+      old_type: git
+      new: HEAD
+      new_type: git
+      cache_dir: .cache
+      add_link_id: true
