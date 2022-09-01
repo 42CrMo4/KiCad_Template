@@ -206,3 +206,19 @@ outputs:
       kicad_3d_url: 'https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/master/'
       orthographic: true
       zoom: 7
+
+  - name: diff_A_pcb
+    type: diff
+    comment: PCB difference with previous version
+    layers: [all]
+    options:
+      # output: '%f-%i%I%v.%x'
+      cache_dir: .cache
+      diff_mode: red_green # or stats
+      # fuzz: 5
+      #new: AYAC100577-02_20191209
+      #new_type: git  # git or file
+      old: 196c344
+      old_type: git
+      pcb: true
+      threshold: 40
