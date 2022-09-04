@@ -230,7 +230,7 @@ outputs:
     options:
       old: 'v0.0.1'
       old_type: git
-      # new: HEAD
+      new: HEAD
       new_type: git
       cache_dir: .cache
       add_link_id: true
