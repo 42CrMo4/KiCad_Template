@@ -230,7 +230,8 @@ outputs:
     options:
       old: 'test'
       old_type: git
-      new: '066ce561369218ffc2051f1eb09f7687233dce63'
+      # new: '066ce561369218ffc2051f1eb09f7687233dce63'
       new_type: git
       cache_dir: .cache
       add_link_id: true
+      diff_mode: red_green
