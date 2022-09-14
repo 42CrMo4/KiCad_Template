@@ -228,9 +228,9 @@ outputs:
     type: diff
     layers: ['F.Cu', 'In1.Cu']
     options:
-      old: 'test'
+      old: KIBOT_LAST-1
       old_type: git
-      # new: '066ce561369218ffc2051f1eb09f7687233dce63'
+      new: HEAD
       new_type: git
       cache_dir: .cache
       add_link_id: true
