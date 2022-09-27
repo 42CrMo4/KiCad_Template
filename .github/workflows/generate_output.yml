@@ -29,7 +29,7 @@ jobs:
     container: ghcr.io/inti-cmnb/kicad6_auto:dev
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Run ERC & DRC
       run: |
@@ -47,7 +47,7 @@ jobs:
   #   needs: ERC
 
   #   steps:
-  #   - uses: actions/checkout@v2
+  #   - uses: actions/checkout@v3
 
   #   - name: Run DRC
   #     run: |
@@ -71,7 +71,7 @@ jobs:
         apt -y install git
     
     - name: Checkout Repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Assign variables from project.properties to Env variable
       run: |
