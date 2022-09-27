@@ -74,6 +74,8 @@ jobs:
     
     - name: Checkout Repository
       uses: actions/checkout@v3
+      with:
+        fetch-depth: '0'
 
     - name: Assign variables from project.properties to Env variable
       run: |
