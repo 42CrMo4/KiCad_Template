@@ -226,7 +226,7 @@ outputs:
   - name: 'diff_pcb'
     comment: "PCB difference with git HEAD"
     type: diff
-    layers: ['F.Cu', 'In1.Cu']
+    layers: ['F.Cu', 'B.Cu']
     options:
       old: v0.0.1
       old_type: git
@@ -235,3 +235,16 @@ outputs:
       cache_dir: .cache
       add_link_id: true
       diff_mode: red_green
+
+  - name: 'diff_sch'
+    comment: "SCH difference with git HEAD"
+    type: diff
+    options:
+      old: v0.0.1
+      old_type: git
+      new: HEAD
+      new_type: git
+      cache_dir: .cache
+      add_link_id: true
+      diff_mode: red_green
+      pcb: false
