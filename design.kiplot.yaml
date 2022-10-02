@@ -38,7 +38,7 @@ outputs:
 
   - name: 'print_front'
     comment: "Print F.Cu+F.SilkS"
-    type: pcb_print
+    type: pdf_pcb_print
     dir: .
     options:
       output: PCB_Sheet_Top.pdf
@@ -49,7 +49,7 @@ outputs:
   
   - name: 'print_back'
     comment: "Print B.Cu+B.SilkS"
-    type: pcb_print
+    type: pdf_pcb_print
     dir: .
     options:
       output: PCB_Sheet_Back.pdf
