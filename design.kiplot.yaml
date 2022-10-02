@@ -43,9 +43,10 @@ outputs:
     options:
       output: PCB_Sheet_Top.pdf
     output_id: PCB_Top
-    layers:
-      - layer: F.Cu
-      - layer: F.SilkS
+    pages:
+      layers:
+        - layer: F.Cu
+        - layer: F.SilkS
   
   - name: 'print_back'
     comment: "Print B.Cu+B.SilkS"
@@ -53,9 +54,10 @@ outputs:
     dir: .
     options:
       output: PCB_Sheet_Back.pdf
-    layers:
-      - layer: B.Cu
-      - layer: B.SilkS
+    pages:
+      layers:
+        - layer: B.Cu
+        - layer: B.SilkS
   
   - name: 'interactive_bom'
     comment: "Interactive Bill of Materials (HTML)"
