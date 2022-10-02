@@ -8,26 +8,11 @@ preflight:
   run_drc: false
   check_zone_fills: false
   ignore_unconnected: false
-  #update_qr: true
 
 #global:
    #output: '%p-%I_%r_%d.%x'
 
 outputs:
-
-  # - name: 'QRCodes'
-  #   comment: "Example of QR codes"
-  #   type: qr_lib
-  #   options:
-  #     output: 'qr.%x'
-  #     qrs:
-  #       - size_sch: 1
-  #         size_pcb: 2
-  #         size_units: millimeters
-  #         layer: copper
-  #       - name: QR2
-  #         text: 'https://github.com/INTI-CMNB/KiBot/'
-  #         correction_level: 'high'
 
   - name: 'print_sch'
     comment: "Print schematic (PDF)"
@@ -142,27 +127,6 @@ outputs:
     options:
       use_aux_axis_as_origin: false
 
-  - name: pcb_top_r
-    comment: "PCB render top green "
-    type: pcbdraw
-    dir: PCB/red
-    options:
-      format: svg
-      style: set-red-enig
-      show_components: all
-      dpi: 600
-
-  - name: pcb_bottom_r
-    comment: "PCB render bottom red "
-    type: pcbdraw
-    dir: PCB/red
-    options:
-      format: svg
-      style: set-red-enig
-      bottom: True
-      show_components: all
-      dpi: 600
-
   - name: pcb_top_b
     comment: "PCB render top blue "
     type: pcbdraw
@@ -206,22 +170,6 @@ outputs:
       kicad_3d_url: 'https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/master/'
       orthographic: true
       zoom: 7
-
-  - name: diff_A_pcb
-    type: diff
-    comment: PCB difference with previous version
-    layers: [all]
-    options:
-      # output: '%f-%i%I%v.%x'
-      cache_dir: .cache
-      diff_mode: red_green # or stats
-      # fuzz: 5
-      #new: AYAC100577-02_20191209
-      #new_type: git  # git or file
-      old: 196c344
-      old_type: git
-      pcb: true
-      threshold: 40
 
   - name: 'diff_pcb'
     comment: "PCB difference with git HEAD"
