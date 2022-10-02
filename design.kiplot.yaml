@@ -14,6 +14,7 @@ preflight:
 
 outputs:
 
+#Plot SCH / PCB
   - name: 'print_sch'
     comment: "Print schematic (PDF)"
     type: pdf_sch_print
@@ -42,6 +43,7 @@ outputs:
       - layer: B.Cu
       - layer: B.SilkS
   
+# Bom's
   - name: 'interactive_bom'
     comment: "Interactive Bill of Materials (HTML)"
     type: ibom
@@ -69,6 +71,80 @@ outputs:
       hide_pcb_info: false
       hide_stats_info: false
 
+#PCBDraw
+  - name: pcb_top_b
+    comment: "PCB render top blue "
+    type: pcbdraw
+    #dir: PCB
+    options:
+      format: png
+      style: set-blue-enig
+      show_components: none
+      dpi: 600
+      output: PCBdraw_Top.png
+
+  - name: pcb_bottom_b
+    comment: "PCB render bottom blue "
+    type: pcbdraw
+    #dir: PCB
+    options:
+      format: png
+      style: set-blue-enig
+      bottom: True
+      show_components: none
+      dpi: 600
+      output: PCBdraw_Back.png
+
+#3D
+  - name: step
+    comment: "Generate 3D model (STEP)"
+    type: step
+    dir: .
+    options:
+      output: 3D.step
+      metric_units: true
+      download: true
+      kicad_3d_url: 'https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/master/'
+
+  - name: 3dview
+    comment: "Generate render from 3D model"
+    type: render_3d
+    dir: .
+    options:
+      metric_units: true
+      download: true
+      kicad_3d_url: 'https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/master/'
+      orthographic: true
+      zoom: 7
+
+#Diffs
+  - name: 'diff_pcb'
+    comment: "PCB difference with git HEAD"
+    type: diff
+    layers: ['F.Cu', 'B.Cu']
+    options:
+      old: v0.0.1
+      old_type: git
+      new: HEAD
+      new_type: git
+      cache_dir: .cache
+      add_link_id: true
+      diff_mode: red_green
+
+  - name: 'diff_sch'
+    comment: "SCH difference with git HEAD"
+    type: diff
+    options:
+      old: KIBOT_LAST-1
+      old_type: git
+      new: HEAD
+      new_type: git
+      cache_dir: .cache
+      add_link_id: true
+      diff_mode: red_green
+      pcb: false
+
+#Gerber
   - name: 'gerbers'
     comment: "Gerbers for the board house"
     type: gerber
@@ -126,73 +202,3 @@ outputs:
     dir: Gerber
     options:
       use_aux_axis_as_origin: false
-
-  - name: pcb_top_b
-    comment: "PCB render top blue "
-    type: pcbdraw
-    #dir: PCB
-    options:
-      format: png
-      style: set-blue-enig
-      show_components: none
-      dpi: 600
-      output: PCBdraw_Top.png
-
-  - name: pcb_bottom_b
-    comment: "PCB render bottom blue "
-    type: pcbdraw
-    #dir: PCB
-    options:
-      format: png
-      style: set-blue-enig
-      bottom: True
-      show_components: none
-      dpi: 600
-      output: PCBdraw_Back.png
-
-  - name: step
-    comment: "Generate 3D model (STEP)"
-    type: step
-    dir: .
-    options:
-      output: 3D.step
-      metric_units: true
-      download: true
-      kicad_3d_url: 'https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/master/'
-
-  - name: 3dview
-    comment: "Generate render from 3D model"
-    type: render_3d
-    dir: .
-    options:
-      metric_units: true
-      download: true
-      kicad_3d_url: 'https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/master/'
-      orthographic: true
-      zoom: 7
-
-  - name: 'diff_pcb'
-    comment: "PCB difference with git HEAD"
-    type: diff
-    layers: ['F.Cu', 'B.Cu']
-    options:
-      old: v0.0.1
-      old_type: git
-      new: HEAD
-      new_type: git
-      cache_dir: .cache
-      add_link_id: true
-      diff_mode: red_green
-
-  - name: 'diff_sch'
-    comment: "SCH difference with git HEAD"
-    type: diff
-    options:
-      old: KIBOT_LAST-1
-      old_type: git
-      new: HEAD
-      new_type: git
-      cache_dir: .cache
-      add_link_id: true
-      diff_mode: red_green
-      pcb: false
