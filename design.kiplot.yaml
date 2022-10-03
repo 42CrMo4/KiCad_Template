@@ -118,12 +118,12 @@ outputs:
       zoom: 7
 
 #Diffs
-  - name: 'diff_pcb'
+  - name: 'diff_pcb_KIBOT_LAST-1'
     comment: "PCB difference with git HEAD"
     type: diff
     layers: ['F.Cu', 'B.Cu']
     options:
-      old: v0.0.1
+      old: KIBOT_LAST-1
       old_type: git
       new: HEAD
       new_type: git
@@ -131,7 +131,7 @@ outputs:
       add_link_id: true
       diff_mode: red_green
 
-  - name: 'diff_sch'
+  - name: 'diff_sch_KIBOT_LAST-1'
     comment: "SCH difference with git HEAD"
     type: diff
     options:
@@ -143,6 +143,19 @@ outputs:
       add_link_id: true
       diff_mode: red_green
       pcb: false
+
+  - name: 'diff_pcb_to_<<last_tag>>'
+    comment: "PCB difference with git HEAD"
+    type: diff
+    layers: ['F.Cu', 'B.Cu']
+    options:
+      old: <<last_tag>>
+      old_type: git
+      new: HEAD
+      new_type: git
+      cache_dir: .cache
+      add_link_id: true
+      diff_mode: red_green
 
 #Gerber
   - name: 'gerbers'
