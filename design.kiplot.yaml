@@ -130,6 +130,7 @@ outputs:
       cache_dir: .cache
       add_link_id: true
       diff_mode: red_green
+      copy_instead_of_link: true
 
   - name: 'diff_sch_KIBOT_LAST-1'
     comment: "SCH difference with git HEAD"
@@ -143,6 +144,7 @@ outputs:
       add_link_id: true
       diff_mode: red_green
       pcb: false
+      copy_instead_of_link: true
 
   - name: 'diff_pcb_to_last_tag'
     comment: "PCB difference with git HEAD"
@@ -156,6 +158,7 @@ outputs:
       cache_dir: .cache
       add_link_id: true
       diff_mode: red_green
+      copy_instead_of_link: true
 
 #Gerber
   - name: 'gerbers'
