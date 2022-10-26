@@ -123,7 +123,7 @@ outputs:
     type: diff
     layers: ['F.Cu', 'B.Cu']
     options:
-      old: v0.0.1
+      old: KIBOT_LAST-1
       old_type: git
       new: HEAD
       new_type: git
