@@ -80,7 +80,8 @@ jobs:
 
     - name: Assign variables from project.properties to Env variable
       run: |
-        cat project.properties | egrep -v "^\s*(#|$)" >> $GITHUB_ENV
+        cat project.properties | egrep -v "^\s*(#|$)" >> $GITHUB_ENV 
+      # https://kvz.io/cat-a-file-without-the-comments.html
     
     - name: Update the Schematic with the git hash
       run: |
