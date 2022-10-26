@@ -16,10 +16,17 @@ This is a template repo for KiCAD v6 projects with
 
 ## Usage
 
+hit "use this template" button
+delet all unneded files in Doc folder
+delet all Schematic stuff but not the text Placeholders <<...>>
+delet all PCB stuff but not the text Placeholders <<...>> and the Board Edge (or the iBOM will fail). You can remodel it later.
+
+### Workflow
+If not working:
 setting -> action -> general -> Workflow permissions -> Read and write permissions
 
 ## Description. 
 
-|     Font      |     Back      |
-| ------------- | ------------- |
-|![PCB Top design](Fabrication/PCBdraw_Top.png)|![PCB Back design](Fabrication/PCBdraw_Back.png)|
+| Font                                           | Back                                             |
+|------------------------------------------------|--------------------------------------------------|
+| ![PCB Top design](Fabrication/PCBdraw_Top.png) | ![PCB Back design](Fabrication/PCBdraw_Back.png) |
