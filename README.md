@@ -1,3 +1,20 @@
+# Diff conditions
+Kibot.yml  
+* add diff to last change
+* Add diff to last tag/RC tag/both
+
+Workflow
+* Add condition if last tag is available in workflow
+* Adapt all workflows accordingly 
+  * Generate output
+    * Last change
+    * Last tag or RC tag
+  * RC release
+    * Last tag
+    * Last rc tag
+  * Release 
+    * Last tag
+
 # KiCad_Template
 
 This is a template repo for KiCAD v6 projects with 
