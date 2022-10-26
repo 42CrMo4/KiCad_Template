@@ -67,7 +67,7 @@ jobs:
 
     - name: Assign variables from project.properties to Env variable
       run: |
-        cat project.properties >> $GITHUB_ENV 
+        cat project.properties | egrep -v "^\s*(#|$)" >> $GITHUB_ENV 
     
     - name: Update the Schematic with the git hash
       run: |
