@@ -13,6 +13,7 @@ on:
       - '*.kicad_pcb'
       - '*.kiplot.yaml'
       - '.github/workflows/generate_output.yml'
+      - 'project.properties'
 
   pull_request:
     # branches: [ main ]
