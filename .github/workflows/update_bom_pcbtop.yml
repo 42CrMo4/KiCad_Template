@@ -37,7 +37,7 @@ jobs:
 
     - name: Assign variables from project.properties to Env variable
       run: |
-        cat project.properties >> $GITHUB_ENV  
+        cat project.properties >> $GITHUB_ENV | egrep -v "^\s*(#|$)" 
 
     - name: Run BOM 
       run: |
