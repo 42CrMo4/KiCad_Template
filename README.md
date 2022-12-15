@@ -27,6 +27,7 @@ setting -> action -> general -> Workflow permissions -> Read and write permissio
 
 ## Description. 
 
-| Font                                           | Back                                             |
-|------------------------------------------------|--------------------------------------------------|
-| ![PCB Top design](Fabrication/PCBdraw_Top.png) | ![PCB Back design](Fabrication/PCBdraw_Back.png) |
+| Font                                                                    | Back                                                                      |
+|-------------------------------------------------------------------------|---------------------------------------------------------------------------|
+| ![PCB Top design](Fabrication/PCBdraw_Top.png)                          | ![PCB Back design](Fabrication/PCBdraw_Back.png)                          |
+| ![PCB Top design](../../blob/documentation/Fabrication/PCBdraw_Top.png) | ![PCB Back design](../../blob/documentation/Fabrication/PCBdraw_Back.png) |

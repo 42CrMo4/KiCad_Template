@@ -47,4 +47,6 @@ jobs:
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
         repository: .
+        create_branch: true
+        branch: documentation
         commit_message: Update Bom and PCB_top
