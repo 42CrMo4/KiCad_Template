@@ -49,4 +49,5 @@ jobs:
         repository: .
         create_branch: true
         branch: documentation
+        push_options: '--force'
         commit_message: Update Bom and PCB_top
