@@ -119,7 +119,7 @@ jobs:
         cd Fabrication_temp
         for file in *; do mv -v ${file} ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${{ github.ref_name }}_${file}; done #https://unix.stackexchange.com/a/389516
 
-    - uses: vimtor/action-zip@v1
+    - uses:vimtor/action-zip@v1.1
       with:
         files: Gerber/
         recursive: false
