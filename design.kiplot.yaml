@@ -58,7 +58,7 @@ outputs:
     dir: .
     options:
       format: CSV
-      output: BoM.csv
+      output: BoM-long.csv
       hide_pcb_info: false
       hide_stats_info: false
 
