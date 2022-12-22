@@ -52,10 +52,10 @@ outputs:
       blacklist: 'DNF*'
       output: 'iBoM.html'
 
-  - name: 'bom_csv'
+  - name: 'bom_csv_release'
     comment: "Bill of Materials in CSV format" 
     type: bom
-    dir: BoM
+    dir: .
     options:
       format: CSV
       hide_pcb_info: false
