@@ -2,6 +2,15 @@
 
 This is a template repo for KiCAD v6 projects with 
 
+### Goal & Status
+| undefined                             | learn                                                                                            | prototype                  | 80-20-rule                                                   | polished Product |
+|---------------------------------------|--------------------------------------------------------------------------------------------------|----------------------------|--------------------------------------------------------------|------------------|
+| not known what the project will bring | personally learn something new (function, design, process) otherwise no usefull outcome expected | a working prototype or mvp | 80% outcome with 20% effort. Dont expect a finished product. | -                |
+
+| idea                   | design                                                | implementation | testing | finished |
+|------------------------|-------------------------------------------------------|----------------|---------|----------|
+| brainstorming workflow | putting together a goal list, architecture, hig level | schematic, pcb |         |          |
+
 ## Todo
 
 * ~add DRC, ERC as seperate WF~ 
