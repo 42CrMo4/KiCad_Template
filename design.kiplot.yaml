@@ -131,6 +131,19 @@ outputs:
       cache_dir: .cache
       add_link_id: true
       diff_mode: red_green
+  
+  - name: 'diff_pcb_tag'
+    comment: "PCB difference with git HEAD"
+    type: diff
+    layers: ['F.Cu', 'B.Cu']
+    options:
+      old: KIBOT_TAG-1
+      old_type: git
+      new: HEAD
+      new_type: git
+      cache_dir: .cache
+      add_link_id: true
+      diff_mode: red_green
 
   - name: 'diff_sch'
     comment: "SCH difference with git HEAD"
