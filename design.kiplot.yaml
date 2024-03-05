@@ -136,6 +136,7 @@ outputs:
     comment: "PCB difference with git Tag"
     type: diff
     layers: ['F.Cu', 'B.Cu']
+    name: "xxx"
     options:
       old: v0.47
       old_type: git
