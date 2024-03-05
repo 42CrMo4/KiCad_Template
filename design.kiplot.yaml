@@ -133,7 +133,7 @@ outputs:
       diff_mode: red_green
   
   - name: 'diff_pcb_tag'
-    comment: "PCB difference with git HEAD"
+    comment: "PCB difference with git Tag"
     type: diff
     layers: ['F.Cu', 'B.Cu']
     options:
