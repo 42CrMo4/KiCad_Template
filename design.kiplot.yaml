@@ -137,7 +137,7 @@ outputs:
     type: diff
     layers: ['F.Cu', 'B.Cu']
     options:
-      old: KIBOT_TAG-1
+      old: v0.47
       old_type: git
       new: HEAD
       new_type: git
