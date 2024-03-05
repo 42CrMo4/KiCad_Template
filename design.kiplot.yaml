@@ -144,7 +144,7 @@ outputs:
       cache_dir: .cache
       add_link_id: true
       diff_mode: red_green
-      output: 'TAG'
+      output: 'TAG.pdf'
 
   - name: 'diff_sch'
     comment: "SCH difference with git HEAD"
