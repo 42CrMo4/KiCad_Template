@@ -216,8 +216,3 @@ outputs:
     dir: Gerber
     options:
       use_aux_axis_as_origin: false
-
-#General
-  - name: navigate_results
-    comment: "webpage for the results"
-    type: navigate_results
