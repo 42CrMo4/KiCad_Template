@@ -216,3 +216,12 @@ outputs:
     dir: Gerber
     options:
       use_aux_axis_as_origin: false
+
+# General
+  - name: 'Kicanvas'
+    comment: "Website with KICAD filse viewer"
+    type: kicanvas
+  - name: 'blender_export'
+    comment: "Blender Export"
+    type: blender_export
+  
