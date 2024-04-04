@@ -47,7 +47,7 @@ outputs:
   - name: 'interactive_bom'
     comment: "Interactive Bill of Materials (HTML)"
     type: ibom
-    dir: .
+    dir: BoM
     options:
       blacklist: 'DNF*'
       output: 'iBoM.html'
@@ -76,7 +76,7 @@ outputs:
   - name: pcb_top_b
     comment: "PCB render top blue "
     type: pcbdraw
-    #dir: PCB
+    dir: Render
     options:
       format: png
       style: set-blue-enig
@@ -87,7 +87,7 @@ outputs:
   - name: pcb_bottom_b
     comment: "PCB render bottom blue "
     type: pcbdraw
-    #dir: PCB
+    dir: Render
     options:
       format: png
       style: set-blue-enig
@@ -100,7 +100,7 @@ outputs:
   - name: step
     comment: "Generate 3D model (STEP)"
     type: step
-    dir: .
+    dir: 3D
     options:
       output: 3D.step
       metric_units: true
@@ -110,12 +110,13 @@ outputs:
   - name: 3dview
     comment: "Generate render from 3D model"
     type: render_3d
-    dir: .
+    dir: Render
     options:
       metric_units: true
       download: true
       kicad_3d_url: 'https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/master/'
       orthographic: true
+      width: 5120
 
 #Diffs
   - name: 'diff_pcb'
