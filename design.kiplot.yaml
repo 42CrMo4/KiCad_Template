@@ -224,7 +224,3 @@ outputs:
     type: kicanvas
     options: 
       source: schematic,pcb,project
-  - name: 'blender_export'
-    comment: "Blender Export"
-    type: blender_export
-  
