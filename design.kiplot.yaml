@@ -10,7 +10,7 @@ preflight:
   ignore_unconnected: false
 
 global:
-   output: <<ID>>_<<hash>>_<<project_name>>
+   output: <<ID>>_<<project_name>>_<<hash>>
 
 outputs:
 
