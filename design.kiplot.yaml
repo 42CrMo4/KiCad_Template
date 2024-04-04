@@ -9,8 +9,9 @@ preflight:
   check_zone_fills: false
   ignore_unconnected: false
 
-#global:
+global:
    #output: '%p-%I_%r_%d.%x'
+   dir: output
 
 outputs:
 
@@ -18,14 +19,14 @@ outputs:
   - name: 'print_sch'
     comment: "Print schematic (PDF)"
     type: pdf_sch_print
-    dir: .
+    dir: +Plots
     options:
       output: Schematic.pdf
 
   - name: 'print_front'
     comment: "Print F.Cu+F.SilkS"
     type: pdf_pcb_print
-    dir: .
+    dir: +Plots
     options:
       output: PCB_Sheet_Top.pdf
     output_id: PCB_Top
@@ -36,7 +37,7 @@ outputs:
   - name: 'print_back'
     comment: "Print B.Cu+B.SilkS"
     type: pdf_pcb_print
-    dir: .
+    dir: +Plots
     options:
       output: PCB_Sheet_Back.pdf
     layers:
@@ -47,7 +48,7 @@ outputs:
   - name: 'interactive_bom'
     comment: "Interactive Bill of Materials (HTML)"
     type: ibom
-    dir: BoM
+    dir: +BoM
     options:
       blacklist: 'DNF*'
       output: 'iBoM.html'
@@ -55,7 +56,7 @@ outputs:
   - name: 'bom_csv_release'
     comment: "Bill of Materials in CSV format" 
     type: bom
-    dir: .
+    #dir: .
     options:
       format: CSV
       output: BoM-long.csv
@@ -65,7 +66,7 @@ outputs:
   - name: 'bom_csv_upload'
     comment: "Bill of Materials in CSV format" 
     type: bom
-    dir: BoM
+    dir: +BoM
     options:
       format: CSV
       output: design-bom.csv
@@ -76,7 +77,7 @@ outputs:
   - name: pcb_top_b
     comment: "PCB render top blue "
     type: pcbdraw
-    dir: Render
+    dir: +Render
     options:
       format: png
       style: set-blue-enig
@@ -87,7 +88,7 @@ outputs:
   - name: pcb_bottom_b
     comment: "PCB render bottom blue "
     type: pcbdraw
-    dir: Render
+    dir: +Render
     options:
       format: png
       style: set-blue-enig
@@ -100,7 +101,7 @@ outputs:
   - name: step
     comment: "Generate 3D model (STEP)"
     type: step
-    dir: 3D
+    dir: +3D
     options:
       output: 3D.step
       metric_units: true
@@ -110,7 +111,7 @@ outputs:
   - name: 3dview
     comment: "Generate render from 3D model"
     type: render_3d
-    dir: Render
+    dir: +Render
     options:
       metric_units: true
       download: true
@@ -163,7 +164,7 @@ outputs:
   - name: 'gerbers'
     comment: "Gerbers for the board house"
     type: gerber
-    dir: Gerber
+    dir: +Gerber
     options:
       # generic layer options
       exclude_edge_layer: true
