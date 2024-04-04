@@ -10,7 +10,7 @@ preflight:
   ignore_unconnected: false
 
 global:
-   #output: '%p-%I_%r_%d.%x'
+   output: <<ID>>_<<hash>>_<<project_name>>
    dir: output
 
 outputs:
