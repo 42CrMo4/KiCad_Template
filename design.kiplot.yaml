@@ -122,6 +122,7 @@ outputs:
   - name: 'diff_pcb'
     comment: "PCB difference with git HEAD"
     type: diff
+    dir: Diff
     layers: ['F.Cu', 'B.Cu']
     options:
       old: KIBOT_LAST-1
@@ -135,6 +136,7 @@ outputs:
   - name: 'diff_pcb_tag'
     comment: "PCB difference with git Tag"
     type: diff
+    dir: Diff
     layers: ['F.Cu', 'B.Cu']
     options:
       old: v0.40
@@ -149,6 +151,7 @@ outputs:
   - name: 'diff_sch'
     comment: "SCH difference with git HEAD"
     type: diff
+    dir: Diff
     options:
       old: KIBOT_LAST-1
       old_type: git
