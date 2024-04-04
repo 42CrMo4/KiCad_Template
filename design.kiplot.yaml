@@ -11,7 +11,7 @@ preflight:
 
 global:
    output: <<ID>>_<<hash>>_<<project_name>>
-   dir: output
+   dir: output/
 
 outputs:
 
