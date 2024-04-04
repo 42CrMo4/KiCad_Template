@@ -20,15 +20,11 @@ outputs:
     comment: "Print schematic (PDF)"
     type: pdf_sch_print
     dir: Plots
-    options:
-      output: Schematic.pdf
 
   - name: 'print_front'
     comment: "Print F.Cu+F.SilkS"
     type: pdf_pcb_print
     dir: Plots
-    options:
-      output: PCB_Sheet_Top.pdf
     output_id: PCB_Top
     layers:
       - layer: F.Cu
@@ -38,8 +34,6 @@ outputs:
     comment: "Print B.Cu+B.SilkS"
     type: pdf_pcb_print
     dir: Plots
-    options:
-      output: PCB_Sheet_Back.pdf
     layers:
       - layer: B.Cu
       - layer: B.SilkS
@@ -51,7 +45,6 @@ outputs:
     dir: BoM
     options:
       blacklist: 'DNF*'
-      output: 'iBoM.html'
 
   - name: 'bom_csv_release'
     comment: "Bill of Materials in CSV format" 
@@ -69,7 +62,6 @@ outputs:
     dir: BoM
     options:
       format: CSV
-      output: design-bom.csv
       hide_pcb_info: false
       hide_stats_info: false
 
@@ -83,7 +75,6 @@ outputs:
       style: set-blue-enig
       show_components: none
       dpi: 600
-      output: PCBdraw_Top.png
 
   - name: pcb_bottom_b
     comment: "PCB render bottom blue "
@@ -95,7 +86,6 @@ outputs:
       bottom: True
       show_components: none
       dpi: 600
-      output: PCBdraw_Back.png
 
 #3D
   - name: step
@@ -103,7 +93,6 @@ outputs:
     type: step
     dir: 3D
     options:
-      output: 3D.step
       metric_units: true
       download: true
       kicad_3d_url: 'https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/master/'
