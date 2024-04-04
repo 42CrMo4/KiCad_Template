@@ -221,5 +221,6 @@ outputs:
   - name: 'Kicanvas'
     comment: "Website with KICAD filse viewer"
     type: kicanvas
+    dir: KiCanvas
     options: 
       source: schematic,pcb,project
