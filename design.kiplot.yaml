@@ -28,19 +28,21 @@ outputs:
     type: pcb_print
     dir: Plots
     output_id: PCB_Top
-    pages:
-      layers:
-        - layer: F.Cu
-        - layer: F.SilkS
+    options:
+      pages:
+        layers:
+          - layer: F.Cu
+          - layer: F.SilkS
   
   - name: 'print_back'
     comment: "Print B.Cu+B.SilkS"
     type: pcb_print
     dir: Plots
-    pages:
-      layers:
-        - layer: B.Cu
-        - layer: B.SilkS
+    options:
+      pages:
+        layers:
+          - layer: B.Cu
+          - layer: B.SilkS
   
 # Bom's
   - name: 'interactive_bom'
