@@ -8,6 +8,7 @@ preflight:
   erc:
     dont_stop: true
   drc: true
+    dont_stop: true
 
 global:
    output: <<ID>>_<<project_name>>_%i_<<hash>>.%x
