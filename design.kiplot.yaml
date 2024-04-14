@@ -2,13 +2,6 @@
 kiplot:
   version: 1
 
-preflight:
-  run_erc: false
-  update_xml: true
-  run_drc: false
-  check_zone_fills: false
-  ignore_unconnected: false
-
 global:
    output: <<ID>>_<<project_name>>_%i_<<hash>>.%x
 
