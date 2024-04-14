@@ -3,10 +3,10 @@ kiplot:
   version: 1
 
 preflight:
-  run_erc: true
   update_xml: true
-  run_drc: true
   check_zone_fills: true
+  erc: true
+  drc: true
 
 global:
    output: <<ID>>_<<project_name>>_%i_<<hash>>.%x
