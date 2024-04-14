@@ -27,7 +27,6 @@ outputs:
     comment: "Print F.Cu+F.SilkS"
     type: pcb_print
     dir: Plots
-    output_id: PCB_Top
     options:
       pages:
         - layers:
