@@ -59,12 +59,10 @@ outputs:
 
   - name: 'bom_csv_upload'
     comment: "Bill of Materials in CSV format" 
-    type: bom
+    type: kibom
     dir: BoM
     options:
       format: CSV
-      hide_pcb_info: false
-      hide_stats_info: false
 
 #PCBDraw
   - name: pcb_top_b
