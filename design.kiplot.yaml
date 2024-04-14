@@ -54,8 +54,8 @@ outputs:
     dir: BoM
     options:
       format: CSV
-      hide_pcb_info: true
-      hide_stats_info: true
+        hide_pcb_info: true
+        hide_stats_info: true
 
 #PCBDraw
   - name: pcb_top_b
