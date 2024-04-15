@@ -16,8 +16,7 @@ global:
 import:
   - file: 3DRender_top
   - file: JLCPCB
-    definitions:
-      _JLCPCB_compress
+  - file: PCBway
 
 outputs:
 
