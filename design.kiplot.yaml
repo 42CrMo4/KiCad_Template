@@ -15,6 +15,7 @@ global:
 
 import:
   - file: 3DRender_top
+  - file: _JLCPCB_compress
 
 outputs:
 
