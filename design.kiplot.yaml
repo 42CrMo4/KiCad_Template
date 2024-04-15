@@ -16,7 +16,7 @@ global:
 import:
   - file: 3DRender_top
   - file: JLCPCB
-  - file: PCBway
+  - file: PCBWay
 
 outputs:
 
