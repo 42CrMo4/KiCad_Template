@@ -4,7 +4,7 @@ name: Update Bom PCB_top
 # events but only for the master branch
 on:
   push:
-    branches: [ main ]
+    # branches: [ main ]
     paths:
       - '*.kicad_sch'
       - '*.kicad_pcb'
@@ -12,7 +12,7 @@ on:
       # - '.github/workflows/generate_output.yml'
       # - 'design.kiplot.yml'
   pull_request:
-    branches: [ main ]
+    # branches: [ main ]
     paths:
       - '*.kicad_sch'
       - '*.kicad_pcb'
@@ -23,4 +23,4 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   call-workflow-passing-data:
-    uses: 42CrMo4/KiCad_Workflows/.github/workflows/update_bom_pcbtop.yml@main
+    uses: 42CrMo4/KiCad_Workflows/.github/workflows/update_bom_pcbtop.yml@kicad8
