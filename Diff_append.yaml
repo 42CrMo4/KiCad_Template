@@ -1,6 +1,6 @@
 
 # Diffs
-  - name: "diff_pcb"
+  - name: "diff_pcb_<<TAG>>"
     comment: "PCB difference with <<TAG>>"
     type: diff
     layers: [copper]
