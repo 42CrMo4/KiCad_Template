@@ -1,0 +1,14 @@
+
+# Diffs
+  - name: "diff_pcb"
+    comment: "PCB difference with <<TAG>>"
+    type: diff
+    layers: [copper]
+    options:
+      old: <<TAG>>
+      old_type: git
+      new: HEAD
+      new_type: git
+      cache_dir: .cache
+      diff_mode: red_green
+          
