@@ -11,7 +11,7 @@ preflight:
     dont_stop: true
 
 global:
-   #output: <<ID>>_<<project_name>>_%i_<<hash>>.%x
+   output: <<ID>>_<<project_name>>_%i_<<hash>>.%x
 
 import:
   - file: 3DRender_top
