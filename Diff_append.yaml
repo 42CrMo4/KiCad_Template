@@ -3,6 +3,7 @@
   - name: "diff_pcb_<<TAG>>"
     comment: "PCB difference with <<TAG>>"
     type: diff
+    dir: Diff
     layers: [copper]
     options:
       old: <<TAG>>
