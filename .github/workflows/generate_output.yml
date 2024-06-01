@@ -193,12 +193,14 @@ jobs:
       run: |
         mv *.kicad_sch ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${{ env.COMMIT }}.kicad_sch
         mv *.kicad_pcb ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${{ env.COMMIT }}.kicad_pcb
+        mv *.kicad_sch ${{ env.ID_prefix }}${{ env.ID }}_${{ env.COMMIT }}.kicad_sch
+        mv *.kicad_pcb ${{ env.ID_prefix }}${{ env.ID }}_${{ env.COMMIT }}.kicad_pcb
 
     - name: Retrieve results kicad_pcb with the git hash
       uses: actions/upload-artifact@v4
       with:
         name: ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${{ env.COMMIT }}_Kicad_raw
-        path: '${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${{ env.COMMIT }}.kicad_*'
+        path: '${{ env.ID_prefix }}${{ env.ID }}_*.kicad_*'
 
     #- name: Renaming Files
     #  run: |
