@@ -108,6 +108,7 @@ outputs:
         resolution_x: 1920
         resolution_y: 1080
         transparent_background: true
+
 #Diffs
   - name: 'diff_pcb_KIBOT_LAST-1'
     comment: "PCB difference KIBOT_LAST-1"
@@ -204,3 +205,9 @@ outputs:
     dir: KiCanvas
     options: 
       source: schematic,pcb
+
+# 3D Stencil
+  - name: '3D Stencil'
+    comment: "3D Stencil for rapid Prototyping"
+    type: stencil_3d
+    dir: Stencil
