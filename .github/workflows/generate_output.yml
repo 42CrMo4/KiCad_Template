@@ -5,8 +5,23 @@ name: CI output design
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events that happen on all branches
-on: workflow_dispatch
+on:
+  push:
+    # branches: [ main ]
+    paths:
+      - '*.kicad_sch'
+      - '*.kicad_pcb'
+      - '*.kiplot.yaml'
+      - '.github/workflows/generate_output.yml'
+      - 'project.properties'
 
+  pull_request:
+    # branches: [ main ]
+    paths:
+      - '*.kicad_sch'
+      - '*.kicad_pcb'
+      - '*.kiplot.yaml'
+      - '.github/workflows/generate_output.yml'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel.
 #jobs:
