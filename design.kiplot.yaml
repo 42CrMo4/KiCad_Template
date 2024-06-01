@@ -62,7 +62,7 @@ outputs:
     comment: "PCB render top blue "
     type: pcbdraw
     options:
-      outup: PCBdraw_Top.png
+      output: PCBdraw_Top.png
       format: png
       style: set-blue-enig
       show_components: none
@@ -72,7 +72,7 @@ outputs:
     comment: "PCB render bottom blue "
     type: pcbdraw
     options:
-      outup: PCBdraw_Back.png
+      output: PCBdraw_Back.png
       format: png
       style: set-blue-enig
       bottom: True
