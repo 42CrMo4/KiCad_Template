@@ -97,19 +97,19 @@ outputs:
       orthographic: true
 
 #Diffs
-  - name: 'diff_pcb'
-    comment: "PCB difference with git HEAD"
-    type: diff
-    dir: Diff
-    layers: ['F.Cu', 'B.Cu']
-    options:
-      old: KIBOT_LAST-1
-      old_type: git
-      new: HEAD
-      new_type: git
-      cache_dir: .cache
-      add_link_id: true
-      diff_mode: red_green
+#  - name: 'diff_pcb'
+#    comment: "PCB difference with git HEAD"
+#    type: diff
+#    dir: Diff
+#    layers: ['F.Cu', 'B.Cu']
+#    options:
+#      old: KIBOT_LAST-1
+#      old_type: git
+#      new: HEAD
+#      new_type: git
+#      cache_dir: .cache
+#      add_link_id: true
+#      diff_mode: red_green
   
 #  - name: 'diff_pcb_tag'
 #    comment: "PCB difference with git Tag"
@@ -126,19 +126,19 @@ outputs:
 #      diff_mode: red_green
 #      output: 'TAG.pdf'
 
-  - name: 'diff_sch'
-    comment: "SCH difference with git HEAD"
-    type: diff
-    dir: Diff
-    options:
-      old: KIBOT_LAST-1
-      old_type: git
-      new: HEAD
-      new_type: git
-      cache_dir: .cache
-      add_link_id: true
-      diff_mode: red_green
-      pcb: false
+#  - name: 'diff_sch'
+#    comment: "SCH difference with git HEAD"
+#    type: diff
+#    dir: Diff
+#    options:
+#      old: KIBOT_LAST-1
+#      old_type: git
+#      new: HEAD
+#      new_type: git
+#      cache_dir: .cache
+#      add_link_id: true
+#      diff_mode: red_green
+#      pcb: false
 
 #Gerber
   - name: 'gerbers'
