@@ -82,6 +82,7 @@ jobs:
         # Check if the latest tag is a non-rc tag and find corresponding rc tag
         if [[ ! $last_tag =~ rc ]]; then
           last_tag_base=$(echo $last_tag | sed 's/[a-zA-Z]*//g')
+          echo "last_tag=$last_tag"
           corresponding_rc_tag=$(git tag | grep "${last_tag_base}-rc" | tail -n 1)
           if [[ -n $corresponding_rc_tag ]]; then
             echo "matching_rc_tag=$corresponding_rc_tag" >> $GITHUB_ENV
