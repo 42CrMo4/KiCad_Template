@@ -105,6 +105,7 @@ outputs:
         download: true
         kicad_3d_url: 'https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/master/'
       render_options:
+        samples: 100
         resolution_x: 1920
         resolution_y: 1080
         transparent_background: true
