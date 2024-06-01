@@ -47,12 +47,24 @@ outputs:
     options:
       blacklist: 'DNF*'
 
+  - name: 'bom_csv_all'
+    comment: "Bill of Materials in CSV format" 
+    type: bom
+    dir: BoM
+    options:
+      format: CSV
+      csv:
+        hide_pcb_info: true
+        hide_stats_info: true
+
   - name: 'bom_csv'
     comment: "Bill of Materials in CSV format" 
     type: bom
     dir: BoM
     options:
       format: CSV
+      output: <<id>>_BoM.csv
+      run_by_default: false
       csv:
         hide_pcb_info: true
         hide_stats_info: true
