@@ -10,8 +10,8 @@ preflight:
   drc:
     dont_stop: true
 
-global:
-   output: <<ID>>_<<project_name>>_%i_<<hash>>.%x
+#global:
+#   output: <<ID>>_<<project_name>>_%i_<<hash>>.%x
 
 import:
   - file: 3DRender_top_straight
