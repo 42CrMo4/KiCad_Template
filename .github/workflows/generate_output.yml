@@ -152,7 +152,6 @@ jobs:
         else
           echo "No suitable rc-tag found"
         fi
-        echo "$(<design.kiplot.yaml )"
 
     - name: Assign variables from project.properties to Env variable
       run: |
@@ -184,7 +183,7 @@ jobs:
     - uses: INTI-CMNB/KiBot@v2_k8
       with:
         # Required - kibot config file
-        config: *.kiplot.yaml
+        config: design.kiplot.yaml
         # optional - prefix to output defined in config
         dir: Fabrication_temp
         skip: all
