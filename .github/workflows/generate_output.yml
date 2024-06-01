@@ -1,8 +1,5 @@
 name: CI output design
 
-# ToDos:
-# - artifact upload ERC/DRC
-
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events that happen on all branches
 on:
@@ -201,28 +198,10 @@ jobs:
         name: ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${{ env.COMMIT }}_Kicad_raw
         path: '${{ env.ID_prefix }}${{ env.ID }}_*.kicad_*'
 
-    #- name: Renaming Files
-    #  run: |
-    #    sudo chmod -R 777 Fabrication_temp
-    #    cd Fabrication_temp
-    #    ls -l
-    #    for file in *; do mv -v ${file} ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${{ env.COMMIT }}_${file}; done #https://unix.stackexchange.com/a/389516
-    #    # mkdir PCB_Sheet
-    #    # mv *Sheet.* PCB_Sheet/
-    #    mkdir BoM
-    #    mv *BoM.* BoM/
-
     - name: Retrieve results
       uses: actions/upload-artifact@v4
       with:
         name: ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${{ env.COMMIT }}_Output
         path: |
           Fabrication_temp/
-          !Fabrication_temp/*_3D*
-
-    - name: Retrieve results
-      uses: actions/upload-artifact@v4
-      with:
-        name: ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${{ env.COMMIT }}_Output_3D_Render
-        path: 'Fabrication_temp/*_3D*'
 
