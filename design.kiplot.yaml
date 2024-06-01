@@ -58,7 +58,7 @@ outputs:
         hide_stats_info: true
 
 #PCBDraw
-  - name: pcb_top_b
+  - name: pcb_top_b_all
     comment: "PCB render top blue "
     type: pcbdraw
     options:
@@ -67,7 +67,7 @@ outputs:
       show_components: none
       dpi: 600
 
-  - name: pcb_bottom_b
+  - name: pcb_bottom_b_all
     comment: "PCB render bottom blue "
     type: pcbdraw
     options:
@@ -77,7 +77,7 @@ outputs:
       show_components: none
       dpi: 600
 
-  - name: pcb_top_b_upload
+  - name: pcb_top_b
     comment: "PCB render top blue "
     type: pcbdraw
     options:
@@ -88,7 +88,7 @@ outputs:
       dpi: 600
       run_by_default: false
 
-  - name: pcb_bottom_b_upload
+  - name: pcb_bottom_b
     comment: "PCB render bottom blue "
     type: pcbdraw
     options:
