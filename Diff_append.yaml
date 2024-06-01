@@ -6,11 +6,24 @@
     dir: Diff
     layers: [copper]
     options:
-      output: Diff_HEAD_<<TAG>>.pdf
+      output: Diff_PCB_HEAD_<<TAG>>.pdf
       old: <<TAG>>
       old_type: git
       new: HEAD
       new_type: git
       cache_dir: .cache
       diff_mode: red_green
-          
+  - name: "diff_sch_<<TAG>>"
+    comment: "SCH difference with <<TAG>>"
+    type: diff
+    dir: Diff
+    layers: [copper]
+    options:
+      output: Diff_SCH_HEAD_<<TAG>>.pdf
+      old: <<TAG>>
+      old_type: git
+      new: HEAD
+      new_type: git
+      cache_dir: .cache
+      diff_mode: red_green
+      pcb: false
