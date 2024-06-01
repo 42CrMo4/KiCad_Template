@@ -63,7 +63,7 @@ outputs:
     dir: BoM
     options:
       format: CSV
-      output: <<id>>_BoM.csv
+      output: <<ID>>_BoM.csv
       run_by_default: false
       csv:
         hide_pcb_info: true
