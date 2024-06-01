@@ -161,21 +161,21 @@ jobs:
         sed -i "s!<<hash>>!Git-${{ env.COMMIT }}!" *.kicad_sch
         sed -i "s!<<project_name>>!${{ env.project_name }}!" *.kicad_sch
         sed -i "s!<<date>>!$(date +'%Y-%m-%d')!" *.kicad_sch 
-        sed -i "s!<<ID>>!${{ env.ID_prefix }}${{ env.ID }}!" *.kicad_sch
+        sed -i "s!<<ID>>!${{ env.ID }}!" *.kicad_sch
     
     - name: Update the PCBs with the git hash
       run: |
         sed -i "s!<<hash>>!Git-${{ env.COMMIT }}!" *.kicad_pcb
         sed -i "s!<<project_name>>!${{ env.project_name }}!" *.kicad_pcb
         sed -i "s!<<date>>!$(date +'%Y-%m-%d')!" *.kicad_pcb 
-        sed -i "s!<<website_link>>!${{ env.Website_link }}/${{ env.ID_prefix }}/${{ env.ID }}!" *.kicad_pcb 
-        sed -i "s!<<ID>>!ID:${{ env.ID_prefix }}${{ env.ID }}!" *.kicad_pcb 
+        sed -i "s!<<website_link>>!${{ env.Website_link }}//${{ env.ID }}!" *.kicad_pcb 
+        sed -i "s!<<ID>>!ID:${{ env.ID }}!" *.kicad_pcb 
 
     - name: Update the KiPlot File with the git hash
       run: |
         sed -i "s!<<hash>>!Git-${{ env.COMMIT }}!" *.kiplot.yaml
         sed -i "s!<<project_name>>!${{ env.project_name }}!" *.kiplot.yaml
-        sed -i "s!<<ID>>!${{ env.ID_prefix }}${{ env.ID }}!" *.kiplot.yaml
+        sed -i "s!<<ID>>!${{ env.ID }}!" *.kiplot.yaml
 
     - uses: INTI-CMNB/KiBot@v2_k8
       with:
@@ -187,21 +187,21 @@ jobs:
 
     - name: Rename the Schematic and PCB Raw Files
       run: |
-        mv *.kicad_sch ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${{ env.COMMIT }}.kicad_sch
-        mv *.kicad_pcb ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${{ env.COMMIT }}.kicad_pcb
-        cp *.kicad_sch ${{ env.ID_prefix }}${{ env.ID }}_${{ env.COMMIT }}.kicad_sch
-        cp *.kicad_pcb ${{ env.ID_prefix }}${{ env.ID }}_${{ env.COMMIT }}.kicad_pcb
+        mv *.kicad_sch ${{ env.ID }}_${{ env.project_name }}_${{ env.COMMIT }}.kicad_sch
+        mv *.kicad_pcb ${{ env.ID }}_${{ env.project_name }}_${{ env.COMMIT }}.kicad_pcb
+        cp *.kicad_sch ${{ env.ID }}_${{ env.COMMIT }}.kicad_sch
+        cp *.kicad_pcb ${{ env.ID }}_${{ env.COMMIT }}.kicad_pcb
 
     - name: Retrieve results kicad_pcb with the git hash
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${{ env.COMMIT }}_Kicad_raw
-        path: '${{ env.ID_prefix }}${{ env.ID }}_*.kicad_*'
+        name: ${{ env.ID }}_${{ env.project_name }}_${{ env.COMMIT }}_Kicad_raw
+        path: '${{ env.ID }}_*.kicad_*'
 
     - name: Retrieve results
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${{ env.COMMIT }}_Output
+        name: ${{ env.ID }}_${{ env.project_name }}_${{ env.COMMIT }}_Output
         path: |
           Fabrication_temp/
 
