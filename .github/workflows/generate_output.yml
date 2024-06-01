@@ -24,6 +24,222 @@ on:
       - '.github/workflows/generate_output.yml'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel.
+#jobs:
+  #call-workflow-passing-data:
+  #  uses: 42CrMo4/KiCad_Workflows/.github/workflows/generate_output.yml@ki8Diff
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  call-workflow-passing-data:
-    uses: 42CrMo4/KiCad_Workflows/.github/workflows/generate_output.yml@ki8Diff
+  Fabrication:
+    name: Fabrication files
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: '0'
+
+    - name: List tags and set environment variables
+      run: |
+        # Fetch all tags and prune deleted references
+        # git fetch --prune --unshallow
+        
+        # Sort tags, placing non-pre-release tags last
+        sorted_tags=$(git tag | sed '/-/!{s/$/_/}' | sort -V | sed 's/_$//')
+        
+        # Get the most recent tag
+        last_tag=$(echo "$sorted_tags" | tail -n 1)
+        
+        # Initialize arrays for pre-release and regular release tags
+        pre_release_tags=()
+        release_tags=()
+
+        # Categorize tags into pre-release and regular release
+        for tag in $(git tag); do 
+          if [[ $tag =~ rc ]]; then
+            pre_release_tags+=("$tag")
+          else
+            release_tags+=("$tag")
+          fi
+        done
+
+        # Get the last pre-release and regular release tags
+        pre_release_last_tag=${pre_release_tags[-1]}
+        non_pre_release_last_tag=${release_tags[-1]}
+
+        # Get the second to last pre-release and regular release tags
+        pre_release_second_to_last_tag=${pre_release_tags[-2]}
+        non_pre_release_second_to_last_tag=${release_tags[-2]}
+
+        # Set environment variables
+        echo "LAST_TAG=$last_tag" >> $GITHUB_ENV
+        echo "PRE_RELEASE_LAST_TAG=$pre_release_last_tag" >> $GITHUB_ENV
+        echo "last_tag=$non_pre_release_last_tag" >> $GITHUB_ENV
+        echo "PRE_RELEASE_SECOND_TO_LAST_TAG=$pre_release_second_to_last_tag" >> $GITHUB_ENV
+        echo "NON_PRE_RELEASE_SECOND_TO_LAST_TAG=$non_pre_release_second_to_last_tag" >> $GITHUB_ENV
+
+        # Check if the latest tag is a non-rc tag and find corresponding rc tag
+        if [[ ! $last_tag =~ rc ]]; then
+          last_tag_base=$(echo $last_tag | sed 's/[a-zA-Z]*//g')
+          corresponding_rc_tag=$(git tag | grep "${last_tag_base}-rc" | tail -n 1)
+          if [[ -n $corresponding_rc_tag ]]; then
+            echo "matching_rc_tag=$corresponding_rc_tag" >> $GITHUB_ENV
+          else
+            echo "CORRESPONDING_RC_TAG=No corresponding RC tag found" >> $GITHUB_ENV
+          fi
+        else
+          # If the latest tag is an rc tag, find the second to last rc tag with the same base number
+          last_tag_base=$(echo $last_tag | sed 's/-rc.*//')
+
+          # Get the tags that match the given base pattern
+          matching_rc_tags=($(git tag | grep "${last_tag_base}-rc" | sort -V))
+          matching_rc_tag=$(matching_rc_tags | tail -n 1)
+          echo "matching_rc_tag=$matching_rc_tag" >> $GITHUB_ENV
+
+          if [[ ${#matching_rc_tags[@]} -eq 0 ]]; then
+            echo "No matching tags found for base: ${last_tag_base}-rc"
+            exit 1
+          fi
+
+          second_to_last_matching_rc_tag=${matching_rc_tags[-2]}
+          if [[ -n $second_to_last_matching_rc_tag ]]; then
+            echo "SECOND_TO_LAST_MATCHING_RC_TAG=$second_to_last_matching_rc_tag" >> $GITHUB_ENV
+          else
+            echo "SECOND_TO_LAST_MATCHING_RC_TAG=No second to last RC tag found" >> $GITHUB_ENV
+          fi
+
+          echo "LAST_NON_RC_TAG=$non_pre_release_last_tag" >> $GITHUB_ENV
+        fi
+
+        # # Debug: Print the counts of tags
+        # echo "Length of sorted_tags: $(echo "$sorted_tags" | wc -w)"
+        # echo "Length of pre_release_tags: ${#pre_release_tags[@]}"
+        # echo "Length of release_tags: ${#release_tags[@]}"
+
+        # # Debug: Print the last and second to last tags
+        # echo "Last pre-release tag: $pre_release_last_tag"
+        # echo "Last non-pre-release tag: $non_pre_release_last_tag"
+        # echo "Second to last pre-release tag: $pre_release_second_to_last_tag"
+        # echo "Second to last non-pre-release tag: $non_pre_release_second_to_last_tag"
+
+        # Print the tags in a logical order for understanding
+        echo "Last Tag: $last_tag"
+        echo "Pre-Release Tags:"
+        for tag in "${pre_release_tags[@]}"; do 
+          echo $tag
+        done
+
+        echo "Regular Release Tags:"
+        for tag in "${release_tags[@]}"; do 
+          echo $tag
+        done
+
+        echo "Second to last non-pre-release tag: $non_pre_release_second_to_last_tag"
+
+    - name: Assign variables from project.properties to Env variable
+      run: |
+        cat project.properties | egrep -v "^\s*(#|$)" >> $GITHUB_ENV 
+        echo COMMIT=$(git rev-parse --short HEAD) >> $GITHUB_ENV 
+      # https://kvz.io/cat-a-file-without-the-comments.html
+    
+    - name: Update the Schematic with the git hash
+      run: |
+        sed -i "s!<<hash>>!Git-${{ env.COMMIT }}!" *.kicad_sch
+        sed -i "s!<<project_name>>!${{ env.project_name }}!" *.kicad_sch
+        sed -i "s!<<date>>!$(date +'%Y-%m-%d')!" *.kicad_sch 
+        sed -i "s!<<ID>>!${{ env.ID_prefix }}${{ env.ID }}!" *.kicad_sch
+    
+    - name: Update the PCBs with the git hash
+      run: |
+        sed -i "s!<<hash>>!Git-${{ env.COMMIT }}!" *.kicad_pcb
+        sed -i "s!<<project_name>>!${{ env.project_name }}!" *.kicad_pcb
+        sed -i "s!<<date>>!$(date +'%Y-%m-%d')!" *.kicad_pcb 
+        sed -i "s!<<website_link>>!${{ env.Website_link }}/${{ env.ID_prefix }}/${{ env.ID }}!" *.kicad_pcb 
+        sed -i "s!<<ID>>!ID:${{ env.ID_prefix }}${{ env.ID }}!" *.kicad_pcb 
+
+    - name: Update the Kibot File with the 
+      run: |
+        if [ -n "${{ env.last_tag }}" ]; then
+          cat Diff_append.yaml >> *.kiplot.yaml
+          sed -i "s!<<TAG>>!${{ env.last_tag }}!" *.kiplot.yaml
+        elif [ -n "${{ env.matching_rc_tag }}" ]; then
+          cat Diff_append.yaml >> *.kiplot.yaml
+          sed -i "s!<<TAG>>!${{ env.matching_rc_tag }}!" *.kiplot.yaml
+        else
+          echo "No suitable tag found"
+        fi
+        ls
+        echo "$(<design.kiplot.yaml.txt )"
+
+    - name: Assign variables from project.properties to Env variable
+      run: |
+        cat project.properties | egrep -v "^\s*(#|$)" >> $GITHUB_ENV 
+        echo COMMIT=$(git rev-parse --short HEAD) >> $GITHUB_ENV 
+      # https://kvz.io/cat-a-file-without-the-comments.html
+    
+    - name: Update the Schematic with the git hash
+      run: |
+        sed -i "s!<<hash>>!Git-${{ env.COMMIT }}!" *.kicad_sch
+        sed -i "s!<<project_name>>!${{ env.project_name }}!" *.kicad_sch
+        sed -i "s!<<date>>!$(date +'%Y-%m-%d')!" *.kicad_sch 
+        sed -i "s!<<ID>>!${{ env.ID_prefix }}${{ env.ID }}!" *.kicad_sch
+    
+    - name: Update the PCBs with the git hash
+      run: |
+        sed -i "s!<<hash>>!Git-${{ env.COMMIT }}!" *.kicad_pcb
+        sed -i "s!<<project_name>>!${{ env.project_name }}!" *.kicad_pcb
+        sed -i "s!<<date>>!$(date +'%Y-%m-%d')!" *.kicad_pcb 
+        sed -i "s!<<website_link>>!${{ env.Website_link }}/${{ env.ID_prefix }}/${{ env.ID }}!" *.kicad_pcb 
+        sed -i "s!<<ID>>!ID:${{ env.ID_prefix }}${{ env.ID }}!" *.kicad_pcb 
+
+    - name: Update the KiPlot File with the git hash
+      run: |
+        sed -i "s!<<hash>>!Git-${{ env.COMMIT }}!" *.kiplot.yaml
+        sed -i "s!<<project_name>>!${{ env.project_name }}!" *.kiplot.yaml
+        sed -i "s!<<ID>>!${{ env.ID_prefix }}${{ env.ID }}!" *.kiplot.yaml
+
+    - uses: INTI-CMNB/KiBot@v2_k8
+      with:
+        # Required - kibot config file
+        config: design.kiplot.yaml
+        # optional - prefix to output defined in config
+        dir: Fabrication_temp
+        skip: all
+
+    - name: Rename the Schematic and PCB Raw Files
+      run: |
+        mv *.kicad_sch ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${{ env.COMMIT }}.kicad_sch
+        mv *.kicad_pcb ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${{ env.COMMIT }}.kicad_pcb
+
+    - name: Retrieve results kicad_pcb with the git hash
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${{ env.COMMIT }}_Kicad_raw
+        path: '${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${{ env.COMMIT }}.kicad_*'
+
+    #- name: Renaming Files
+    #  run: |
+    #    sudo chmod -R 777 Fabrication_temp
+    #    cd Fabrication_temp
+    #    ls -l
+    #    for file in *; do mv -v ${file} ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${{ env.COMMIT }}_${file}; done #https://unix.stackexchange.com/a/389516
+    #    # mkdir PCB_Sheet
+    #    # mv *Sheet.* PCB_Sheet/
+    #    mkdir BoM
+    #    mv *BoM.* BoM/
+
+    - name: Retrieve results
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${{ env.COMMIT }}_Output
+        path: |
+          Fabrication_temp/
+          !Fabrication_temp/*_3D*
+
+    - name: Retrieve results
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${{ env.COMMIT }}_Output_3D
+        path: 'Fabrication_temp/*_3D*'
+
