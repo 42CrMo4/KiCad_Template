@@ -163,13 +163,15 @@ jobs:
         if [ -n "${{ env.last_tag }}" ]; then
           cat Diff_append.yaml >> *.kiplot.yaml
           sed -i "s!<<TAG>>!${{ env.last_tag }}!" *.kiplot.yaml
-        elif [ -n "${{ env.matching_rc_tag }}" ]; then
-          cat Diff_append.yaml >> *.kiplot.yaml
-          sed -i "s!<<TAG>>!${{ env.matching_rc_tag }}!" *.kiplot.yaml
         else
           echo "No suitable tag found"
         fi
-        ls
+        if [ -n "${{ env.matching_rc_tag }}" ]; then
+          cat Diff_append.yaml >> *.kiplot.yaml
+          sed -i "s!<<TAG>>!${{ env.matching_rc_tag }}!" *.kiplot.yaml
+        else
+          echo "No suitable rc-tag found"
+        fi
         echo "$(<design.kiplot.yaml )"
 
     - name: Assign variables from project.properties to Env variable
