@@ -6,6 +6,7 @@
     dir: Diff
     layers: [copper]
     options:
+      output: Diff_HEAD_<<TAG>>.pdf
       old: <<TAG>>
       old_type: git
       new: HEAD
