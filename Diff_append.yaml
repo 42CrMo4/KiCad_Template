@@ -13,6 +13,7 @@
       new_type: git
       cache_dir: .cache
       diff_mode: red_green
+      only_different: true
   - name: "diff_sch_<<TAG>>"
     comment: "SCH difference with <<TAG>>"
     type: diff
@@ -27,3 +28,4 @@
       cache_dir: .cache
       diff_mode: red_green
       pcb: false
+      only_different: true
