@@ -14,7 +14,7 @@ global:
    output: <<ID>>_<<project_name>>_%i_<<hash>>.%x
 
 import:
-  - file: 3DRender_top
+  - file: 3DRender_top_straight
   - file: JLCPCB
   - file: PCBWay
 
@@ -96,6 +96,18 @@ outputs:
       kicad_3d_url: 'https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/master/'
       orthographic: true
 
+  - name: 3dview_render
+    comment: "Generate render from 3D model from Blender"
+    type: blender_export
+    dir: Render
+    options:
+      pcb3d:
+        download: true
+        kicad_3d_url: 'https://gitlab.com/kicad/libraries/kicad-packages3D/-/raw/master/'
+      render_options:
+        resolution_x: 1920
+        resolution_y: 1080
+        transparent_background: true
 #Diffs
   - name: 'diff_pcb_KIBOT_LAST-1'
     comment: "PCB difference KIBOT_LAST-1"
