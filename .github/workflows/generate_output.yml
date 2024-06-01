@@ -224,6 +224,6 @@ jobs:
     - name: Retrieve results
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${{ env.COMMIT }}_Output_3D
+        name: ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${{ env.COMMIT }}_Output_3D_Render
         path: 'Fabrication_temp/*_3D*'
 
