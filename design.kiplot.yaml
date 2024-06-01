@@ -24,6 +24,7 @@ outputs:
   - name: 'print_sch'
     comment: "Print schematic (PDF)"
     type: pdf_sch_print
+    dir: Plots
 
   - name: 'print_front'
     comment: "Print F.Cu+F.SilkS"
@@ -61,6 +62,7 @@ outputs:
     comment: "PCB render top blue "
     type: pcbdraw
     options:
+      outup: "PCBdraw_Top.png"
       format: png
       style: set-blue-enig
       show_components: none
@@ -70,6 +72,7 @@ outputs:
     comment: "PCB render bottom blue "
     type: pcbdraw
     options:
+      outup: "PCBdraw_Back.png"
       format: png
       style: set-blue-enig
       bottom: True
