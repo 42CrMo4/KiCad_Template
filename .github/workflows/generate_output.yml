@@ -170,7 +170,7 @@ jobs:
           echo "No suitable tag found"
         fi
         ls
-        echo "$(<design.kiplot.yaml.txt )"
+        echo "$(<design.kiplot.yaml )"
 
     - name: Assign variables from project.properties to Env variable
       run: |
