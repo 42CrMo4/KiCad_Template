@@ -5,10 +5,10 @@
 	(uuid "46918595-4a45-48e8-84c0-961b4db7f35f")
 	(paper "A4")
 	(title_block
-		(title "<<ID>>_<<project_name>>")
-		(date "<<date>>")
+		(title "PFFF_template")
+		(date "2024-06-02")
 		(rev "<<version>>")
-		(comment 4 "<<hash>>")
+		(comment 4 "Git-0d2bf0b")
 	)
 	(lib_symbols
 		(symbol "Connector_Generic:Conn_01x02"

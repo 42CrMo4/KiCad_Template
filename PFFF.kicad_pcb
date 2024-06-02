@@ -8,10 +8,10 @@
 	)
 	(paper "A4")
 	(title_block
-		(title "<<ID>>_<<project_name>>")
-		(date "<<date>>")
+		(title "ID:PFFF_template")
+		(date "2024-06-02")
 		(rev "<<version>>")
-		(comment 4 "<<hash>>")
+		(comment 4 "Git-0d2bf0b")
 	)
 	(layers
 		(0 "F.Cu" signal)
@@ -3366,7 +3366,7 @@
 		(layer "Edge.Cuts")
 		(uuid "d205a3ef-6fc7-4793-884a-a92f50059f45")
 	)
-	(gr_text "<<project_name>>\n<<ID>>\n<<version>>\n<<date>>\n<<hash>>\n<<website_link>>"
+	(gr_text "template\nID:PFFF\n<<version>>\n2024-06-02\nGit-0d2bf0b\nwww.website.com//PFFF"
 		(at 146.5 95.504 0)
 		(layer "B.SilkS")
 		(uuid "72f86fac-1de9-4853-b551-bbe9529da2a3")
@@ -3433,7 +3433,7 @@
 			)
 		)
 	)
-	(gr_text "<<project_name>>\n<<ID>>\n<<version>>\n<<date>>\n<<hash>>\n<<website_link>>"
+	(gr_text "template\nID:PFFF\n<<version>>\n2024-06-02\nGit-0d2bf0b\nwww.website.com//PFFF"
 		(at 225.75 151 0)
 		(layer "F.SilkS")
 		(uuid "db2ece89-8ae6-4182-9241-50ae4c827b71")
