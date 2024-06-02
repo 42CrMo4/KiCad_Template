@@ -138,12 +138,14 @@ jobs:
     - name: Update the Kibot File with the Tags
       run: |
         if [ -n "${{ env.last_tag }}" ]; then
+          curl -o Diff_append.yaml https://raw.githubusercontent.com/42CrMo4/KiCad_Workflows/ki8Diff/.github/workflows/Diff_append.yaml
           cat Diff_append.yaml >> *.kiplot.yaml
           sed -i "s!<<TAG>>!${{ env.last_tag }}!" *.kiplot.yaml
         else
           echo "No suitable tag found"
         fi
         if [ -n "${{ env.matching_rc_tag }}" ]; then
+          curl -o Diff_append.yaml https://raw.githubusercontent.com/42CrMo4/KiCad_Workflows/ki8Diff/.github/workflows/Diff_append.yaml
           cat Diff_append.yaml >> *.kiplot.yaml
           sed -i "s!<<TAG>>!${{ env.matching_rc_tag }}!" *.kiplot.yaml
         else
