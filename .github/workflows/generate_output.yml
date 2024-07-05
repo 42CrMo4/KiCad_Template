@@ -156,7 +156,7 @@ jobs:
       run: |
         cat project.properties | egrep -v "^\s*(#|$)" >> $GITHUB_ENV 
         echo COMMIT=$(git rev-parse --short HEAD) >> $GITHUB_ENV 
-      # https://kvz.io/cat-a-file-without-the-comments.html
+      # https://kvz.io/blog/cat-a-file-without-the-comments.html
     
     - name: Update the Schematic with the git hash
       run: |
