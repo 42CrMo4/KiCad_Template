@@ -11,6 +11,7 @@ on:
       - '*.kiplot.yaml'
       # - '.github/workflows/generate_output.yml'
       # - 'design.kiplot.yml'
+      - 'project.properties'
   pull_request:
     # branches: [ main ]
     paths:
