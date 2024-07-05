@@ -9,8 +9,7 @@ on:
       - '*.kicad_sch'
       - '*.kicad_pcb'
       - '*.kiplot.yaml'
-      # - '.github/workflows/generate_output.yml'
-      # - 'design.kiplot.yml'
+      - '.github/workflows/update_bom_pcbtop.yml'
       - 'project.properties'
   pull_request:
     # branches: [ main ]
