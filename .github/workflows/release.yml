@@ -5,10 +5,12 @@ on:
   push:
     tags:
       - 'v[0-9]+.[0-9]+'
+      - 'v[0-9]+.[0-9]+-rc[0-9]+'
 
   pull_request:
     tags:
       - 'v[0-9]+.[0-9]+'
+      - 'v[0-9]+.[0-9]+-rc[0-9]+'
 
 # ToDo:
 # - if any version number is over 9 then no release is in github only the tag. 
@@ -16,4 +18,4 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   call-workflow-passing-data:
-    uses: 42CrMo4/KiCad_Workflows/.github/workflows/release.yml@main
+    uses: 42CrMo4/KiCad_Workflows/.github/workflows/release.yml@ki8Diff
