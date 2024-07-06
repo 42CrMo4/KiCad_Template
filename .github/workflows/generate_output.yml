@@ -2,15 +2,17 @@ name: CI and Release Workflow
 
 on:
   push:
+    branches:
+      - '**'
+    tags:
+      - 'v[0-9]+.[0-9]+'
+      - 'v[0-9]+.[0-9]+-rc[0-9]+'
     paths:
       - '*.kicad_sch'
       - '*.kicad_pcb'
       - '*.kiplot.yaml'
       - '.github/workflows/generate_output.yml'
       - 'project.properties'
-    tags:
-      - 'v[0-9]+.[0-9]+'
-      - 'v[0-9]+.[0-9]+-rc[0-9]+'
   pull_request:
     paths:
       - '*.kicad_sch'
@@ -24,20 +26,20 @@ on:
   #  uses: 42CrMo4/KiCad_Workflows/.github/workflows/generate_output.yml@ki8Diff
 
 jobs:
-  determine-release-type:
+  determine-run-type:
     runs-on: ubuntu-latest
     outputs:
-      release-type: ${{ steps.check-tag.outputs.release-type }}
+      run-type: ${{ steps.check-ref.outputs.run-type }}
     steps:
-      - name: Check tag
-        id: check-tag
+      - name: Check ref
+        id: check-ref
         run: |
           if [[ ${{ github.ref }} =~ ^refs/tags/v[0-9]+\.[0-9]+$ ]]; then
-            echo "release-type=release" >> $GITHUB_OUTPUT
+            echo "run-type=release" >> $GITHUB_OUTPUT
           elif [[ ${{ github.ref }} =~ ^refs/tags/v[0-9]+\.[0-9]+-rc[0-9]+$ ]]; then
-            echo "release-type=rc" >> $GITHUB_OUTPUT
+            echo "run-type=rc" >> $GITHUB_OUTPUT
           else
-            echo "release-type=ci" >> $GITHUB_OUTPUT
+            echo "run-type=ci" >> $GITHUB_OUTPUT
           fi
 
   ERC:
@@ -64,7 +66,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    needs: [DRC, determine-release-type]
+    needs: [DRC, determine-run-type]
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v4
@@ -216,7 +218,7 @@ jobs:
       with:
         config: config.kiplot.yaml
         dir: Fabrication_temp
-        targets: ${{ needs.determine-release-type.outputs.release-type == 'ci' && '' || 'print_front pcb_top_b pcb_bottom_b step print_sch interactive_bom bom_csv' }}
+        targets: ${{ needs.determine-run-type.outputs.run-type == 'ci' && '' || 'print_front pcb_top_b pcb_bottom_b step print_sch interactive_bom bom_csv' }}
 
     - name: Rename the Schematic and PCB Raw Files
       run: |
@@ -239,7 +241,7 @@ jobs:
           Fabrication_temp/
 
     - name: Create Gerber zip
-      if: needs.determine-release-type.outputs.release-type != 'ci'
+      if: needs.determine-run-type.outputs.run-type != 'ci'
       uses: vimtor/action-zip@v1
       with:
         files: Gerber/
@@ -247,19 +249,19 @@ jobs:
         dest: ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${{ github.ref_name }}_Gerber.zip
 
     - name: Create GitHub Release
-      if: needs.determine-release-type.outputs.release-type != 'ci'
+      if: needs.determine-run-type.outputs.run-type != 'ci'
       uses: ncipollo/release-action@v1
       with:
         artifacts: "Fabrication_temp/*,Fabrication_temp/*/*, *.kicad_sch, *.kicad_pcb, *Gerber.zip"
         bodyFile: "docs/release_note.md"
-        prerelease: ${{ needs.determine-release-type.outputs.release-type == 'rc' }}
+        prerelease: ${{ needs.determine-run-type.outputs.run-type == 'rc' }}
         token: ${{ secrets.GITHUB_TOKEN }}
 
   Archive-md:
     name: Archive & Renew Release Docs
     runs-on: ubuntu-latest
-    needs: [Fabrication, determine-release-type]
-    if: needs.determine-release-type.outputs.release-type == 'release'
+    needs: [Fabrication, determine-run-type]
+    if: needs.determine-run-type.outputs.run-type == 'release'
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
