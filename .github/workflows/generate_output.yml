@@ -1,19 +1,17 @@
-name: CI output design
+name: CI and Release Workflow
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events that happen on all branches
 on:
   push:
-    # branches: [ main ]
     paths:
       - '*.kicad_sch'
       - '*.kicad_pcb'
       - '*.kiplot.yaml'
       - '.github/workflows/generate_output.yml'
       - 'project.properties'
-
+    tags:
+      - 'v[0-9]+.[0-9]+'
+      - 'v[0-9]+.[0-9]+-rc[0-9]+'
   pull_request:
-    # branches: [ main ]
     paths:
       - '*.kicad_sch'
       - '*.kicad_pcb'
@@ -25,12 +23,48 @@ on:
   #call-workflow-passing-data:
   #  uses: 42CrMo4/KiCad_Workflows/.github/workflows/generate_output.yml@ki8Diff
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  determine-release-type:
+    runs-on: ubuntu-latest
+    outputs:
+      release-type: ${{ steps.check-tag.outputs.release-type }}
+    steps:
+      - name: Check tag
+        id: check-tag
+        run: |
+          if [[ ${{ github.ref }} =~ ^refs/tags/v[0-9]+\.[0-9]+$ ]]; then
+            echo "release-type=release" >> $GITHUB_OUTPUT
+          elif [[ ${{ github.ref }} =~ ^refs/tags/v[0-9]+\.[0-9]+-rc[0-9]+$ ]]; then
+            echo "release-type=rc" >> $GITHUB_OUTPUT
+          else
+            echo "release-type=ci" >> $GITHUB_OUTPUT
+          fi
+
+  ERC:
+    runs-on: ubuntu-latest
+    container: ghcr.io/inti-cmnb/kicad8_auto:1.7.0
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run ERC
+        run: |
+          [ -f *.kicad_sch ] && kiplot -d Fabrication_temp -s update_xml,run_drc -i
+
+  DRC:
+    runs-on: ubuntu-latest
+    container: ghcr.io/inti-cmnb/kicad8_auto:1.7.0
+    needs: ERC
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run DRC
+        run: |
+          [ -f *.kicad_pcb ] && kiplot -d Fabrication_temp -s update_xml,run_erc -i
+
   Fabrication:
     name: Fabrication files
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: write
+    needs: [DRC, determine-release-type]
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v4
@@ -156,15 +190,14 @@ jobs:
       run: |
         cat project.properties | egrep -v "^\s*(#|$)" >> $GITHUB_ENV 
         echo COMMIT=$(git rev-parse --short HEAD) >> $GITHUB_ENV 
-      # https://kvz.io/blog/cat-a-file-without-the-comments.html
-    
+
     - name: Update the Schematic with the git hash
       run: |
         sed -i "s!<<hash>>!Git-${{ env.COMMIT }}!" *.kicad_sch
         sed -i "s!<<project_name>>!${{ env.project_name }}!" *.kicad_sch
         sed -i "s!<<date>>!$(date +'%Y-%m-%d')!" *.kicad_sch 
         sed -i "s!<<ID>>!${{ env.ID }}!" *.kicad_sch
-    
+
     - name: Update the PCBs with the git hash
       run: |
         sed -i "s!<<hash>>!Git-${{ env.COMMIT }}!" *.kicad_pcb
@@ -181,11 +214,9 @@ jobs:
 
     - uses: INTI-CMNB/KiBot@v2_k8
       with:
-        # Required - kibot config file
         config: config.kiplot.yaml
-        # optional - prefix to output defined in config
         dir: Fabrication_temp
-        #skip: all
+        targets: ${{ needs.determine-release-type.outputs.release-type == 'ci' && '' || 'print_front pcb_top_b pcb_bottom_b step print_sch interactive_bom bom_csv JLCPCB PCBWay' }}
 
     - name: Rename the Schematic and PCB Raw Files
       run: |
@@ -207,3 +238,42 @@ jobs:
         path: |
           Fabrication_temp/
 
+    - name: Create Gerber zip
+      if: needs.determine-release-type.outputs.release-type != 'ci'
+      uses: vimtor/action-zip@v1
+      with:
+        files: Gerber/
+        recursive: false
+        dest: ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${{ github.ref_name }}_Gerber.zip
+
+    - name: Create GitHub Release
+      if: needs.determine-release-type.outputs.release-type != 'ci'
+      uses: ncipollo/release-action@v1
+      with:
+        artifacts: "Fabrication_temp/*,Fabrication_temp/*/*, *.kicad_sch, *.kicad_pcb, *Gerber.zip"
+        bodyFile: "docs/release_note.md"
+        prerelease: ${{ needs.determine-release-type.outputs.release-type == 'rc' }}
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+  Archive-md:
+    name: Archive & Renew Release Docs
+    runs-on: ubuntu-latest
+    needs: [Fabrication, determine-release-type]
+    if: needs.determine-release-type.outputs.release-type == 'release'
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Renaming Release note & checklist + copy the template
+        run: |
+          cd docs
+          mv release_note.md release_note_${{ github.ref_name }}.md
+          mv release_checklist.md release_checklist_${{ github.ref_name }}.md
+          cp release_template/release_note.md release_note.md 
+          cp release_template/release_checklist.md release_checklist.md
+
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          repository: .
+          branch: main
+          commit_message: Archive & Renew release docs
