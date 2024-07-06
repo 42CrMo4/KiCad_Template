@@ -131,7 +131,7 @@ jobs:
           matching_rc_tag=$(matching_rc_tags | tail -n 1)
           echo "matching_rc_tag=$matching_rc_tag" >> $GITHUB_ENV
 
-          if [[ ${#matching_rc_tags[@]} -eq 0 ]]; then
+          if [[ ${matching_rc_tags[@]} -eq 0 ]]; then
             echo "No matching tags found for base: ${last_tag_base}-rc"
             exit 1
           fi
