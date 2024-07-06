@@ -210,7 +210,7 @@ jobs:
         # optional - prefix to output defined in config
         dir: Fabrication_temp
         #skip: all
-        targets: print_front pcb_top_b pcb_bottom_b step print_sch interactive_bom bom_csv JLCPCB PCBWay
+        targets: print_front pcb_top_b pcb_bottom_b step print_sch interactive_bom bom_csv gerbers
 
     - name: Rename the Schematic and PCB Raw Files
       run: |
