@@ -216,7 +216,7 @@ jobs:
       with:
         config: config.kiplot.yaml
         dir: Fabrication_temp
-        targets: ${{ needs.determine-release-type.outputs.release-type == 'ci' && '' || 'print_front pcb_top_b pcb_bottom_b step print_sch interactive_bom bom_csv JLCPCB PCBWay' }}
+        targets: ${{ needs.determine-release-type.outputs.release-type == 'ci' && '' || 'print_front pcb_top_b pcb_bottom_b step print_sch interactive_bom bom_csv' }}
 
     - name: Rename the Schematic and PCB Raw Files
       run: |
