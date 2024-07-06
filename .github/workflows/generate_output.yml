@@ -151,11 +151,11 @@ jobs:
         # echo "Length of pre_release_tags: ${#pre_release_tags[@]}"
         # echo "Length of release_tags: ${#release_tags[@]}"
 
-        # # Debug: Print the last and second to last tags
-        # echo "Last pre-release tag: $pre_release_last_tag"
-        # echo "Last non-pre-release tag: $non_pre_release_last_tag"
-        # echo "Second to last pre-release tag: $pre_release_second_to_last_tag"
-        # echo "Second to last non-pre-release tag: $non_pre_release_second_to_last_tag"
+        # Debug: Print the last and second to last tags
+        echo "Last pre-release tag: $pre_release_last_tag"
+        echo "Last non-pre-release tag: $non_pre_release_last_tag"
+        echo "Second to last pre-release tag: $pre_release_second_to_last_tag"
+        echo "Second to last non-pre-release tag: $non_pre_release_second_to_last_tag"
 
         # Print the tags in a logical order for understanding
         echo "Last Tag: $last_tag"
@@ -215,17 +215,9 @@ jobs:
         sed -i "s!<<ID>>!${{ env.ID }}!" *.kiplot.yaml
 
     - uses: INTI-CMNB/KiBot@v2_k8
-      if: needs.determine-run-type.outputs.run-type == 'ci' 
       with:
         config: config.kiplot.yaml
         dir: Fabrication_temp
-
-    - uses: INTI-CMNB/KiBot@v2_k8
-      if: needs.determine-run-type.outputs.run-type != 'ci' 
-      with:
-        config: config.kiplot.yaml
-        dir: Fabrication_temp
-        targets: 'print_front pcb_top_b pcb_bottom_b step print_sch interactive_bom bom_csv'
 
     - name: Rename the Schematic and PCB Raw Files
       run: |
@@ -246,14 +238,6 @@ jobs:
         name: ${{ env.ID }}_${{ env.project_name }}_${{ env.COMMIT }}_Output
         path: |
           Fabrication_temp/
-
-    - name: Create Gerber zip
-      if: needs.determine-run-type.outputs.run-type != 'ci'
-      uses: vimtor/action-zip@v1
-      with:
-        files: Gerber/
-        recursive: false
-        dest: ${{ env.ID_prefix }}${{ env.ID }}_${{ env.project_name }}_${{ github.ref_name }}_Gerber.zip
 
     - name: Create GitHub Release
       if: needs.determine-run-type.outputs.run-type != 'ci'
