@@ -249,9 +249,3 @@ outputs:
     dir: KiCanvas
     options: 
       source: schematic,pcb
-
-# 3D Stencil
-  - name: '3D Stencil'
-    comment: "3D Stencil for rapid Prototyping"
-    type: stencil_3d
-    dir: Stencil
