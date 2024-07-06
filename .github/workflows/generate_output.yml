@@ -215,10 +215,17 @@ jobs:
         sed -i "s!<<ID>>!${{ env.ID }}!" *.kiplot.yaml
 
     - uses: INTI-CMNB/KiBot@v2_k8
+      if: needs.determine-run-type.outputs.run-type == 'ci' 
       with:
         config: config.kiplot.yaml
         dir: Fabrication_temp
-        targets: ${{ needs.determine-run-type.outputs.run-type == 'ci' && '' || 'print_front pcb_top_b pcb_bottom_b step print_sch interactive_bom bom_csv' }}
+
+    - uses: INTI-CMNB/KiBot@v2_k8
+      if: needs.determine-run-type.outputs.run-type != 'ci' 
+      with:
+        config: config.kiplot.yaml
+        dir: Fabrication_temp
+        targets: 'print_front pcb_top_b pcb_bottom_b step print_sch interactive_bom bom_csv'
 
     - name: Rename the Schematic and PCB Raw Files
       run: |
