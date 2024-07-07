@@ -75,9 +75,6 @@ jobs:
 
     - name: List tags and set environment variables
       run: |
-        # Fetch all tags and prune deleted references
-        # git fetch --prune --unshallow
-        
         # Sort tags, placing non-pre-release tags last
         sorted_tags=$(git tag | sed '/-/!{s/$/_/}' | sort -V | sed 's/_$//')
         
@@ -108,19 +105,19 @@ jobs:
         # Set environment variables
         echo "LAST_TAG=$last_tag" >> $GITHUB_ENV
         echo "PRE_RELEASE_LAST_TAG=$pre_release_last_tag" >> $GITHUB_ENV
-        echo "last_tag=$non_pre_release_last_tag" >> $GITHUB_ENV
+        echo "LAST_NON_PRE_RELEASE_TAG=$non_pre_release_last_tag" >> $GITHUB_ENV
         echo "PRE_RELEASE_SECOND_TO_LAST_TAG=$pre_release_second_to_last_tag" >> $GITHUB_ENV
         echo "NON_PRE_RELEASE_SECOND_TO_LAST_TAG=$non_pre_release_second_to_last_tag" >> $GITHUB_ENV
 
         # Check if the latest tag is a non-rc tag and find corresponding rc tag
         if [[ ! $last_tag =~ rc ]]; then
           last_tag_base=$(echo $last_tag | sed 's/[a-zA-Z]*//g')
-          echo "last_tag_base=$last_tag_base"
-          corresponding_rc_tag=$(git tag | grep "${last_tag_base}-rc" | tail -n 1)
-          if [[ -n $corresponding_rc_tag ]]; then
-            echo "matching_rc_tag=$corresponding_rc_tag" >> $GITHUB_ENV
+          echo "Last tag base: $last_tag_base"
+          matching_rc_tag=$(git tag | grep "${last_tag_base}-rc" | sort -V | tail -n 1)
+          if [[ -n $matching_rc_tag ]]; then
+            echo "MATCHING_RC_TAG=$matching_rc_tag" >> $GITHUB_ENV
           else
-            echo "CORRESPONDING_RC_TAG=No corresponding RC tag found" >> $GITHUB_ENV
+            echo "MATCHING_RC_TAG=No corresponding RC tag found" >> $GITHUB_ENV
           fi
         else
           # If the latest tag is an rc tag, find the second to last rc tag with the same base number
@@ -128,48 +125,31 @@ jobs:
 
           # Get the tags that match the given base pattern
           matching_rc_tags=($(git tag | grep "${last_tag_base}-rc" | sort -V))
-          matching_rc_tag=$(matching_rc_tags | tail -n 1)
-          echo "matching_rc_tag=$matching_rc_tag" >> $GITHUB_ENV
+          if [[ ${#matching_rc_tags[@]} -gt 0 ]]; then
+            matching_rc_tag="${matching_rc_tags[-1]}"
+            echo "MATCHING_RC_TAG=$matching_rc_tag" >> $GITHUB_ENV
 
-          if [[ ${matching_rc_tags[@]} -eq 0 ]]; then
-            echo "No matching tags found for base: ${last_tag_base}-rc"
-            exit 1
-          fi
-
-          second_to_last_matching_rc_tag=${matching_rc_tags[-2]}
-          if [[ -n $second_to_last_matching_rc_tag ]]; then
-            echo "SECOND_TO_LAST_MATCHING_RC_TAG=$second_to_last_matching_rc_tag" >> $GITHUB_ENV
+            if [[ ${#matching_rc_tags[@]} -gt 1 ]]; then
+              second_to_last_matching_rc_tag="${matching_rc_tags[-2]}"
+              echo "SECOND_TO_LAST_MATCHING_RC_TAG=$second_to_last_matching_rc_tag" >> $GITHUB_ENV
+            else
+              echo "SECOND_TO_LAST_MATCHING_RC_TAG=No second to last RC tag found" >> $GITHUB_ENV
+            fi
           else
+            echo "No matching tags found for base: ${last_tag_base}-rc"
+            echo "MATCHING_RC_TAG=No matching RC tag found" >> $GITHUB_ENV
             echo "SECOND_TO_LAST_MATCHING_RC_TAG=No second to last RC tag found" >> $GITHUB_ENV
           fi
-
-          echo "LAST_NON_RC_TAG=$non_pre_release_last_tag" >> $GITHUB_ENV
         fi
 
-        # # Debug: Print the counts of tags
-        # echo "Length of sorted_tags: $(echo "$sorted_tags" | wc -w)"
-        # echo "Length of pre_release_tags: ${#pre_release_tags[@]}"
-        # echo "Length of release_tags: ${#release_tags[@]}"
-
-        # Debug: Print the last and second to last tags
-        echo "Last pre-release tag: $pre_release_last_tag"
-        echo "Last non-pre-release tag: $non_pre_release_last_tag"
-        echo "Second to last pre-release tag: $pre_release_second_to_last_tag"
-        echo "Second to last non-pre-release tag: $non_pre_release_second_to_last_tag"
-
-        # Print the tags in a logical order for understanding
-        echo "Last Tag: $last_tag"
-        echo "Pre-Release Tags:"
-        for tag in "${pre_release_tags[@]}"; do 
-          echo $tag
-        done
-
-        echo "Regular Release Tags:"
-        for tag in "${release_tags[@]}"; do 
-          echo $tag
-        done
-
-        echo "Second to last non-pre-release tag: $non_pre_release_second_to_last_tag"
+        # Debug: Print all environment variables
+        echo "Last Tag: $LAST_TAG"
+        echo "Pre-Release Last Tag: $PRE_RELEASE_LAST_TAG"
+        echo "Last Non-Pre-Release Tag: $LAST_NON_PRE_RELEASE_TAG"
+        echo "Pre-Release Second to Last Tag: $PRE_RELEASE_SECOND_TO_LAST_TAG"
+        echo "Non-Pre-Release Second to Last Tag: $NON_PRE_RELEASE_SECOND_TO_LAST_TAG"
+        echo "Matching RC Tag: $MATCHING_RC_TAG"
+        echo "Second to Last Matching RC Tag: $SECOND_TO_LAST_MATCHING_RC_TAG"
 
     - name: Update the Kibot File with the Tags
       run: |
