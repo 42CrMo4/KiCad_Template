@@ -143,13 +143,13 @@ jobs:
         fi
 
         # Debug: Print all environment variables
-        echo "Last Tag: $LAST_TAG"
-        echo "Pre-Release Last Tag: $PRE_RELEASE_LAST_TAG"
-        echo "Last Non-Pre-Release Tag: $LAST_NON_PRE_RELEASE_TAG"
-        echo "Pre-Release Second to Last Tag: $PRE_RELEASE_SECOND_TO_LAST_TAG"
-        echo "Non-Pre-Release Second to Last Tag: $NON_PRE_RELEASE_SECOND_TO_LAST_TAG"
-        echo "Matching RC Tag: $MATCHING_RC_TAG"
-        echo "Second to Last Matching RC Tag: $SECOND_TO_LAST_MATCHING_RC_TAG"
+        echo "Last Tag: ${{ env.LAST_TAG }}"
+        echo "Pre-Release Last Tag: ${{ env.PRE_RELEASE_LAST_TAG }}"
+        echo "Last Non-Pre-Release Tag: ${{ env.LAST_NON_PRE_RELEASE_TAG }}"
+        echo "Pre-Release Second to Last Tag: ${{ env.PRE_RELEASE_SECOND_TO_LAST_TAG }}"
+        echo "Non-Pre-Release Second to Last Tag: ${{ env.NON_PRE_RELEASE_SECOND_TO_LAST_TAG }}"
+        echo "Matching RC Tag: ${{ env.MATCHING_RC_TAG }}"
+        echo "Second to Last Matching RC Tag: ${{ env.SECOND_TO_LAST_MATCHING_RC_TAG }}"
 
     - name: Update the Kibot File with the Tags
       run: |
