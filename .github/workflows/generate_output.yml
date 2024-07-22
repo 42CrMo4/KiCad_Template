@@ -153,17 +153,17 @@ jobs:
 
     - name: Update the Kibot File with the Tags
       run: |
-        if [ -n "${{ env.LAST_NON_PRE_RELEASE_TAG }}" ]; then
+        if [ -n "${{ steps.tag-info.outputs.PREVIOUS_RELEASE }}" ]; then
           curl -o Diff_append.yaml https://raw.githubusercontent.com/42CrMo4/KiCad_Workflows/ki8Diff/.github/workflows/Diff_append.yaml
           cat Diff_append.yaml >> *.kiplot.yaml
-          sed -i "s!<<TAG>>!${{ env.LAST_NON_PRE_RELEASE_TAG }}!" *.kiplot.yaml
+          sed -i "s!<<TAG>>!${{ steps.tag-info.outputs.PREVIOUS_RELEASE }}!" *.kiplot.yaml
         else
           echo "No suitable tag found"
         fi
-        if [ -n "${{ env.MATCHING_RC_TAG }}" ]; then
+        if [ -n "${{ steps.tag-info.outputs.PREVIOUS_RC }}" ]; then
           curl -o Diff_append.yaml https://raw.githubusercontent.com/42CrMo4/KiCad_Workflows/ki8Diff/.github/workflows/Diff_append.yaml
           cat Diff_append.yaml >> *.kiplot.yaml
-          sed -i "s!<<TAG>>!${{ env.MATCHING_RC_TAG }}!" *.kiplot.yaml
+          sed -i "s!<<TAG>>!${{ steps.tag-info.outputs.PREVIOUS_RC }}!" *.kiplot.yaml
         else
           echo "No suitable rc-tag found"
         fi
@@ -173,20 +173,20 @@ jobs:
         cat project.properties | egrep -v "^\s*(#|$)" >> $GITHUB_ENV 
         echo COMMIT=$(git rev-parse --short HEAD) >> $GITHUB_ENV 
 
-    - name: Update the Schematic with the git hash
-      run: |
-        sed -i "s!<<hash>>!Git-${{ env.COMMIT }}!" *.kicad_sch
-        sed -i "s!<<project_name>>!${{ env.project_name }}!" *.kicad_sch
-        sed -i "s!<<date>>!$(date +'%Y-%m-%d')!" *.kicad_sch 
-        sed -i "s!<<ID>>!${{ env.ID }}!" *.kicad_sch
+    #- name: Update the Schematic with the git hash
+    #  run: |
+    #    sed -i "s!<<hash>>!Git-${{ env.COMMIT }}!" *.kicad_sch
+    #    sed -i "s!<<project_name>>!${{ env.project_name }}!" *.kicad_sch
+    #    sed -i "s!<<date>>!$(date +'%Y-%m-%d')!" *.kicad_sch 
+    #    sed -i "s!<<ID>>!${{ env.ID }}!" *.kicad_sch
 
     - name: Update the PCBs with the git hash
       run: |
-        sed -i "s!<<hash>>!Git-${{ env.COMMIT }}!" *.kicad_pcb
-        sed -i "s!<<project_name>>!${{ env.project_name }}!" *.kicad_pcb
-        sed -i "s!<<date>>!$(date +'%Y-%m-%d')!" *.kicad_pcb 
-        sed -i "s!<<website_link>>!${{ env.Website_link }}//${{ env.ID }}!" *.kicad_pcb 
-        sed -i "s!<<ID>>!ID:${{ env.ID }}!" *.kicad_pcb 
+        sed -i "s!<<hash>>!Git-${{ env.COMMIT }}!" *.kicad_*
+        sed -i "s!<<project_name>>!${{ env.project_name }}!" *.kicad_*
+        sed -i "s!<<date>>!$(date +'%Y-%m-%d')!" *.kicad_* 
+        sed -i "s!<<website_link>>!${{ env.Website_link }}//${{ env.ID }}!" *.kicad_* 
+        sed -i "s!<<ID>>!ID:${{ env.ID }}!" *.kicad_* 
 
     - name: Update the KiPlot File with the git hash
       run: |
