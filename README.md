@@ -1,6 +1,6 @@
 # KiCad_Template
 
-This is a template repo for KiCAD v6 projects with 
+This is a template repo for KiCAD v8 projects with 
 
 ### Goal & Status
 | undefined                             | learn                                                                                            | prototype                  | 80-20-rule                                                   | polished Product |
