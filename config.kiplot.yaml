@@ -189,4 +189,4 @@ outputs:
     type: kicanvas
     dir: KiCanvas
     options: 
-      source: schematic,pcb
+      source: ['schematic', 'pcb', 'project']
