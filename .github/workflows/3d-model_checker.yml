@@ -7,12 +7,14 @@ on:
       - '**.kicad_sch'
       - '**.yml'
       - '**.py'
+      - '3d-models/*'
   pull_request:
     paths:
       - '**.kicad_pcb'
       - '**.kicad_sch'
       - '**.yml'
       - '**.py'
+      - '3d-models/*'
 
 jobs:
   check-3d-models:
